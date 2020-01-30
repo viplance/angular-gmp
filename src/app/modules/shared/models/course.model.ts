@@ -1,6 +1,6 @@
-import { Course } from '../interfaces';
+import { ICourse } from '../interfaces';
 
-export class CourseModel implements Course {
+export class CourseModel implements ICourse {
   id: number;
   title: string;
   creationDate: Date;
