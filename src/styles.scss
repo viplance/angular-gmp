@@ -3,3 +3,45 @@ body {
   margin: 0;
   padding: 0;
 }
+
+app-header {
+  grid-area: header;
+}
+
+router-outlet {
+  grid-area: content;
+}
+
+app-footer {
+  grid-area: footer;
+}
+
+app-root {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "content content content"
+    "footer footer footer";
+  grid-template-rows: 64px 1fr 64px;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  app-root {
+    grid-template-areas:
+      "header"
+      "content"
+      "footer";
+
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      auto /* Header */
+      1fr /* Content */
+      auto; /* Footer */
+  }
+
+  nav,
+  aside {
+    margin: 0;
+  }
+}

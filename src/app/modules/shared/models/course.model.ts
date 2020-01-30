@@ -1,4 +1,4 @@
-import { Course } from 'app/interfaces';
+import { Course } from '../interfaces';
 
 export class CourseModel implements Course {
   id: number;
