@@ -1,7 +1,5 @@
-$charcoal-grey: #414452;
+@import "app/styles/variables";
 
 header {
-  background-color: $charcoal-grey;
-  box-sizing: border-box;
-  padding: 20px 0;
+  color: $light;
 }
