@@ -2,19 +2,22 @@
 
 :host {
   display: grid;
-  background-color: $charcoal-grey;
-  color: $silver;
+  background-color: $light;
   align-items: center;
   justify-content: center;
 }
 
-footer {
+section {
+  display: grid;
+  align-items: center;
+  background-color: $light;
+  height: $lg-panel-height;
   min-width: $lg-panel-width;
-  text-align: right;
 }
 
 @media (max-width: $lg-width) {
-  footer {
+  section {
+    height: $sm-panel-height;
     min-width: none;
   }
 }

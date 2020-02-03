@@ -1,5 +1,31 @@
 @import "app/styles/variables";
 
+:host {
+  display: grid;
+  background-color: $charcoal-grey;
+  color: $light;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   color: $light;
+  min-width: $lg-panel-width;
+}
+
+app-user-login {
+  position: absolute;
+  height: $lg-panel-height;
+  right: 39px;
+  font-size: 14px;
+}
+
+@media (max-width: $lg-width) {
+  header {
+    min-width: none;
+  }
+
+  app-user-login {
+    height: $sm-panel-height;
+  }
 }

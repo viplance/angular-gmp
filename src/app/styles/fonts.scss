@@ -1,0 +1,30 @@
+@import "variables";
+
+.basic-font {
+  font-family: SourceSansPro;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.footer-text {
+  @extend .basic-font;
+  color: $silver;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.title-text {
+  @extend .basic-font;
+  color: $dark;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.light-md-text {
+  @extend .basic-font;
+  color: $light;
+  font-size: 14px;
+  font-weight: normal;
+}

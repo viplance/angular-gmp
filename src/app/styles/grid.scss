@@ -1,27 +1,15 @@
 @import "variables";
 
 app-header {
-  display: grid;
   grid-area: header;
-  background-color: $charcoal-grey;
-  align-items: center;
-  justify-content: center;
+}
 
-  header {
-    min-width: $lg-width;
-  }
+app-title {
+  grid-area: title;
 }
 
 app-footer {
-  display: grid;
   grid-area: footer;
-  background-color: $charcoal-grey;
-  align-items: center;
-  justify-content: center;
-
-  footer {
-    min-width: $lg-width;
-  }
 }
 
 app-root {
@@ -29,50 +17,24 @@ app-root {
   // align-items: center;
   grid-template-areas:
     "header"
+    "title"
     "content"
     "footer";
   grid-template-rows:
     $lg-panel-height /* Header */
+    $lg-panel-height /* Title */
     auto /* Content */
     $lg-panel-height; /* Footer */
   height: 100vh;
   width: 100vw;
-
-  > section {
-    display: grid;
-    grid-area: content;
-    justify-content: center;
-    align-items: start;
-
-    > div.content {
-      min-width: $lg-width;
-    }
-  }
 }
 
 @media (max-width: 1024px) {
   app-root {
-    grid-template-columns: 1fr;
     grid-template-rows:
       $sm-panel-height /* Header */
+      $sm-panel-height /* Title */
       auto /* Content */
       $sm-panel-height; /* Footer */
-    > section {
-      > div.content {
-        min-width: none;
-      }
-    }
-  }
-
-  app-header {
-    header {
-      min-width: none;
-    }
-  }
-
-  app-footer {
-    footer {
-      min-width: none;
-    }
   }
 }

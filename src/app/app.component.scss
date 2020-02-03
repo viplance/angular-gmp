@@ -1,0 +1,25 @@
+@import "app/styles/variables";
+
+:host {
+  > section {
+    display: grid;
+    grid-area: content;
+    background-color: $pale-grey-two;
+    justify-content: center;
+    align-items: start;
+
+    > div.content {
+      min-width: $lg-panel-width;
+    }
+  }
+}
+
+@media (max-width: $lg-width) {
+  :host {
+    > section {
+      > div.content {
+        min-width: none;
+      }
+    }
+  }
+}

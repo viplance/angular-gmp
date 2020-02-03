@@ -1,0 +1,18 @@
+aside {
+  display: grid;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: auto auto;
+  grid-gap: 1.5rem;
+}
+
+img {
+  width: auto;
+  height: 12px;
+  margin-right: 0.5rem;
+}
+
+section {
+  cursor: pointer;
+}
