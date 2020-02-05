@@ -1,0 +1,31 @@
+@import "app/styles/variables";
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  float: left;
+  background-color: $light;
+  border: 1px solid $pale-grey;
+  height: 48px;
+  width: 360px;
+}
+
+img {
+  float: left;
+  margin: $basic-module;
+  height: calc(#{$basic-module} * 2);
+  width: calc(#{$basic-module} * 2);
+}
+
+input {
+  border: none;
+  float: left;
+  height: calc(#{$basic-module} * 2);
+  margin-top: $basic-module;
+  width: calc(100% - #{$basic-module} * 4);
+}
+
+::placeholder {
+  color: $silver;
+  opacity: 1; /* Firefox */
+}

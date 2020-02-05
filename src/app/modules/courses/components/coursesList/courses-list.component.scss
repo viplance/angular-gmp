@@ -1,0 +1,46 @@
+@import "app/styles/variables";
+
+section.search {
+  margin-top: calc(#{$basic-module} * 2);
+
+  button {
+    margin-left: 0.5rem;
+  }
+}
+
+section.add-course {
+  margin-top: calc(#{$basic-module} * 2);
+
+  button {
+    float: right;
+  }
+
+  img {
+    float: left;
+    margin-right: 0.5rem;
+    height: calc(#{$basic-module} * 2);
+    width: calc(#{$basic-module} * 2);
+  }
+
+  span {
+    line-height: 1.4rem;
+  }
+}
+
+section.cards {
+  .card {
+    background-color: $light;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 163px;
+    margin: calc(#{$basic-module} * 2) 0;
+    padding: calc(#{$basic-module} * 2);
+  }
+
+  .description {
+    color: $slate-grey;
+    max-width: 800px;
+    margin-top: 8px;
+    text-align: justify;
+  }
+}

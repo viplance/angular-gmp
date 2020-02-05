@@ -112,6 +112,11 @@ body {
   line-height: 1;
 }
 
+button,
+input {
+  outline: none;
+}
+
 ol,
 ul {
   list-style: none;

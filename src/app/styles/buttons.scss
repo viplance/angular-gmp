@@ -1,0 +1,31 @@
+@import "app/styles/variables";
+
+button,
+input[type="button"] {
+  border: none;
+  border-radius: 3px;
+  color: $light;
+  cursor: pointer;
+  display: inline;
+
+  &.md {
+    font-size: 14px;
+    padding: 0 calc(#{$basic-module} * 2);
+    height: calc(#{$basic-module} * 3);
+  }
+
+  &.lg {
+    font-size: 18px;
+    padding: 0 calc(#{$basic-module} * 2);
+    height: calc(#{$basic-module} * 4);
+  }
+
+  &.search {
+    background-color: $sick-green;
+    color: $light;
+  }
+
+  &.standard {
+    background-color: $dark-sky-blue;
+  }
+}

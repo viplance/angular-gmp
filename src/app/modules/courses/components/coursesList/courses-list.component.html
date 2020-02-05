@@ -1,1 +1,25 @@
-<p>courses works!</p>
+<section class="search">
+  <app-search></app-search>
+  <button class="search lg">Search</button>
+</section>
+
+<section class="add-course">
+  <button class="standard md">
+    <img src="assets/plus.svg" alt="Add course" />
+    <span>Add course</span>
+  </button>
+</section>
+
+<section class="cards">
+  <div class="card" *ngFor="let course of courses">
+    <h1>Video Course 1. Name tag</h1>
+    <div class="description">
+      Learn about where you can find course descriptions, what information they
+      include, how they work, and details about various components of a course
+      description. Course descriptions report information about a university or
+      college's classes. They're published both in course catalogs that outline
+      degree requirements and in course schedules that contain descriptions for
+      all courses offered during a particular semester.
+    </div>
+  </div>
+</section>

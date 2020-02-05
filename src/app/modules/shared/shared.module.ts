@@ -1,20 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import {
   FooterComponent,
   HeaderComponent,
   LogoComponent,
+  SearchComponent,
   TitleComponent,
   UserLoginComponent
 } from './components';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   declarations: [
     FooterComponent,
     HeaderComponent,
     LogoComponent,
+    SearchComponent,
     TitleComponent,
     UserLoginComponent
   ],
@@ -25,6 +29,7 @@ import {
     FormsModule,
     HeaderComponent,
     LogoComponent,
+    SearchComponent,
     TitleComponent,
     UserLoginComponent
   ]
