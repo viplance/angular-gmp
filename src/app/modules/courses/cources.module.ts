@@ -8,6 +8,7 @@ import { CoursesListComponent } from './components';
 const routes: Routes = [
   {
     path: '',
+    data: { title: 'Courses' },
     component: CoursesListComponent
   }
 ];
