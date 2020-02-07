@@ -14,7 +14,6 @@ app-footer {
 
 app-root {
   display: grid;
-  // align-items: center;
   grid-template-areas:
     "header"
     "title"
@@ -29,7 +28,7 @@ app-root {
   width: 100vw;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: $lg-panel-width) {
   app-root {
     grid-template-rows:
       $sm-panel-height /* Header */

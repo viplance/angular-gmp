@@ -15,7 +15,7 @@ section {
   min-width: $lg-panel-width;
 }
 
-@media (max-width: $lg-width) {
+@media (max-width: $lg-panel-width) {
   section {
     height: $sm-panel-height;
     min-width: none;

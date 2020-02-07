@@ -23,7 +23,7 @@ export class AppComponent {
           route = route.firstChild;
         }
 
-        return data.title || '';
+        return data.title || null;
       })
     );
   }

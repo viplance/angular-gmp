@@ -20,7 +20,11 @@ app-user-login {
   font-size: 14px;
 }
 
-@media (max-width: $lg-width) {
+@media (max-width: $lg-panel-width) {
+  app-logo {
+    margin-left: calc(#{$basic-module} * 2);
+  }
+
   header {
     min-width: none;
   }

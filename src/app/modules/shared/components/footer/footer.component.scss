@@ -5,16 +5,16 @@
   background-color: $charcoal-grey;
   color: $silver;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
+  min-width: $lg-panel-width;
 }
 
 footer {
-  min-width: $lg-panel-width;
-  text-align: right;
+  margin-right: calc(#{$basic-module} * 2);
 }
 
-@media (max-width: $lg-width) {
-  footer {
+@media (max-width: $lg-panel-width) {
+  :host {
     min-width: none;
   }
 }

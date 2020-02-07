@@ -1,6 +1,8 @@
+@import "app/styles/variables";
+
 aside {
   display: grid;
-  height: 100%;
+  height: $lg-panel-height;
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto;
@@ -15,4 +17,10 @@ img {
 
 section {
   cursor: pointer;
+}
+
+@media (max-width: $lg-panel-width) {
+  aside {
+    height: $sm-panel-height;
+  }
 }
