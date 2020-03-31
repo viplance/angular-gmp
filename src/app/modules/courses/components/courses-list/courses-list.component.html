@@ -1,0 +1,17 @@
+<section class="search">
+  <app-search></app-search>
+  <button class="search lg">Search</button>
+</section>
+
+<section class="add-course">
+  <button class="standard md">
+    <i class="fa fa-plus"></i>
+    <span>Add course</span>
+  </button>
+</section>
+
+<section class="cards">
+  <app-course-card *ngFor="let course of courses" [course]="course"></app-course-card>
+
+  <div class="load-more">LOAD MORE</div>
+</section>

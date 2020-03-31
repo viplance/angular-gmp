@@ -1,0 +1,58 @@
+@import "app/styles/variables";
+@import "../index.scss";
+
+$card-left-block-width: 800px;
+
+:host {
+  @extend .basic-card;
+  display: block;
+  height: 163px;
+
+  .card-content {
+    display: grid;
+    grid-template-columns: $card-left-block-width auto;
+
+    .card-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 0.7rem;
+      }
+    }
+
+    .description {
+      color: $slate-grey;
+      margin-top: 8px;
+      text-align: justify;
+      line-height: 1.71;
+      letter-spacing: normal;
+      height: 5rem;
+      overflow-y: hidden;
+    }
+  }
+
+  .card-info {
+    display: flex;
+    align-items: center;
+    color: $light-grey;
+
+    i {
+      font-size: 14px;
+      margin-left: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $card-left-block-width;
+  }
+}
