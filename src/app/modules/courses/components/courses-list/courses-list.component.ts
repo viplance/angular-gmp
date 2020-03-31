@@ -8,4 +8,12 @@ import { courses as Courses } from './fake-data';
 })
 export class CoursesListComponent {
   courses = Courses;
+
+  deleteCourse(id: number): void {
+    console.log('Delete course', id);
+  }
+
+  editCourse(id: number): void {
+    console.log('Edit course', id);
+  }
 }

@@ -12,7 +12,7 @@
     {{ course.description }}
   </div>
   <div class="card-buttons">
-    <button class="standard sm"><i class="fas fa-edit"></i><span>Edit</span></button>
-    <button class="standard sm"><i class="fas fa-trash-alt"></i><span>Delete</span></button>
+    <button (click)="editCourse()" class="standard sm"><i class="fas fa-edit"></i><span>Edit</span></button>
+    <button (click)="deleteCourse()" class="standard sm"><i class="fas fa-trash-alt"></i><span>Delete</span></button>
   </div>
 </div>
