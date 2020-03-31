@@ -1,4 +1,6 @@
-export const courses = [
+import { Course } from 'app/modules/shared/interfaces';
+
+export const courses: Course[] = [
   {
     id: 1,
     title: 'Video Course 1. Name tag',
@@ -81,7 +83,7 @@ export const courses = [
     id: 7,
     title: 'Video Course 7. Name tag',
     creationDate: new Date('January 25, 2020 09:00:00'),
-    duration: 5,
+    duration: '5h',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
