@@ -1,0 +1,56 @@
+@import "app/styles/variables";
+@import "../index.scss";
+
+section.search {
+  margin-top: calc(#{$basic-module} * 2);
+  display: flex;
+
+  button {
+    margin-left: 0.5rem;
+  }
+}
+
+section.add-course {
+  margin-top: calc(#{$basic-module} * 2);
+  margin-bottom: calc(#{$basic-module} * 6);
+
+  button {
+    float: right;
+  }
+
+  img {
+    float: left;
+    margin-right: 0.5rem;
+    height: calc(#{$basic-module} * 2);
+    width: calc(#{$basic-module} * 2);
+  }
+
+  span {
+    line-height: 1.4rem;
+  }
+}
+
+.basic-card {
+  background-color: $light;
+  box-sizing: border-box;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  border-radius: 8px;
+  width: $lg-panel-width;
+  margin: calc(#{$basic-module} * 2) 0;
+  padding: calc(#{$basic-module} * 2);
+}
+
+section.cards {
+  .load-more {
+    @extend .basic-card;
+    color: $soft-blue;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .load-more:hover {
+    text-decoration: none;
+  }
+}

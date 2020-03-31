@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router, RouterEvent, ResolveStart } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-gmp';
+  title: Observable<string>;
+
+  constructor(private router: Router) {
+    this.title = this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof ResolveStart),
+      map((event: ResolveStart) => {
+        let data = null;
+        let route = event.state.root;
+
+        while (route) {
+          data = route.data || data;
+          route = route.firstChild;
+        }
+
+        return data.title || null;
+      })
+    );
+  }
 }

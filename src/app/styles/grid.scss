@@ -1,0 +1,37 @@
+@import "variables";
+
+app-header {
+  grid-area: header;
+}
+
+app-title {
+  grid-area: title;
+}
+
+app-footer {
+  position: fixed;
+  width: 100%;
+  height: $sm-panel-height;
+  bottom: 0;
+}
+
+app-root {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "title"
+    "content";
+  grid-template-rows:
+    $lg-panel-height /* Header */
+    $lg-panel-height /* Title */
+    auto; /* Content */
+}
+
+@media (max-width: $lg-panel-width) {
+  app-root {
+    grid-template-rows:
+      $sm-panel-height /* Header */
+      $sm-panel-height /* Title */
+      auto; /* Content */
+  }
+}
