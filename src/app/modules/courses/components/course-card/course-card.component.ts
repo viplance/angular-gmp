@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Course } from 'app/modules/shared/interfaces';
 
 @Component({
@@ -6,12 +6,16 @@ import { Course } from 'app/modules/shared/interfaces';
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.scss']
 })
-export class CourseCardComponent {
+export class CourseCardComponent implements OnInit {
   @Input() course: Course;
   @Output() edit = new EventEmitter();
   @Output() delete = new EventEmitter();
 
   constructor() {}
+
+  ngOnInit(): void {
+    console.log('Init card component with value', this.course);
+  }
 
   deleteCourse(): void {
     this.delete.emit(this.course.id);

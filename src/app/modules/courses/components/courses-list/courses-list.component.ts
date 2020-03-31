@@ -16,4 +16,8 @@ export class CoursesListComponent {
   editCourse(id: number): void {
     console.log('Edit course', id);
   }
+
+  loadMore(): void {
+    console.log('Load more');
+  }
 }

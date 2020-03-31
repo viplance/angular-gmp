@@ -14,5 +14,5 @@
   <app-course-card *ngFor="let course of courses" [course]="course" (delete)="deleteCourse($event)"
     (edit)="editCourse($event)"></app-course-card>
 
-  <div class="load-more">LOAD MORE</div>
+  <div (click)="loadMore()" class="load-more">LOAD MORE</div>
 </section>
