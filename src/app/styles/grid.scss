@@ -9,7 +9,10 @@ app-title {
 }
 
 app-footer {
-  grid-area: footer;
+  position: fixed;
+  width: 100%;
+  height: $sm-panel-height;
+  bottom: 0;
 }
 
 app-root {
@@ -17,13 +20,11 @@ app-root {
   grid-template-areas:
     "header"
     "title"
-    "content"
-    "footer";
+    "content";
   grid-template-rows:
     $lg-panel-height /* Header */
     $lg-panel-height /* Title */
-    auto /* Content */
-    $lg-panel-height; /* Footer */
+    auto; /* Content */
 }
 
 @media (max-width: $lg-panel-width) {
@@ -31,7 +32,6 @@ app-root {
     grid-template-rows:
       $sm-panel-height /* Header */
       $sm-panel-height /* Title */
-      auto /* Content */
-      $sm-panel-height; /* Footer */
+      auto; /* Content */
   }
 }

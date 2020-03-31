@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ResolveStart } from '@angular/router';
+import { Router, RouterEvent, ResolveStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(private router: Router) {
     this.title = this.router.events.pipe(
-      filter(event => event instanceof ResolveStart),
+      filter((event: RouterEvent) => event instanceof ResolveStart),
       map((event: ResolveStart) => {
         let data = null;
         let route = event.state.root;
