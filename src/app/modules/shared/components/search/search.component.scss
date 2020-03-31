@@ -1,11 +1,13 @@
 @import "app/styles/variables";
 
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   float: left;
   background-color: $light;
   border: 1px solid $pale-grey;
+  border-radius: 3px;
   height: 48px;
   width: 360px;
 }
@@ -21,7 +23,6 @@ input {
   border: none;
   float: left;
   height: calc(#{$basic-module} * 2);
-  margin-top: $basic-module;
   width: calc(100% - #{$basic-module} * 4);
 }
 

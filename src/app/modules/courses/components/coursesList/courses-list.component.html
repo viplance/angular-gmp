@@ -5,21 +5,32 @@
 
 <section class="add-course">
   <button class="standard md">
-    <img src="assets/plus.svg" alt="Add course" />
+    <i class="fa fa-plus"></i>
     <span>Add course</span>
   </button>
 </section>
 
 <section class="cards">
   <div class="card" *ngFor="let course of courses">
-    <h1>Video Course 1. Name tag</h1>
-    <div class="description">
-      Learn about where you can find course descriptions, what information they
-      include, how they work, and details about various components of a course
-      description. Course descriptions report information about a university or
-      college's classes. They're published both in course catalogs that outline
-      degree requirements and in course schedules that contain descriptions for
-      all courses offered during a particular semester.
+    <section class="card-header">
+      <h1>{{ course.title }}</h1>
+      <div class="card-info">
+        <i class="far fa-clock"></i>
+        <span>{{ course.duration }}</span>
+        <i class="far fa-calendar"></i>
+        <span>{{ course.creationDate | date }}</span>
+      </div>
+    </section>
+    <div class="card-content">
+      <div class="description">
+        {{ course.description }}
+      </div>
+      <div class="card-buttons">
+        <button class="standard sm"><i class="fas fa-edit"></i><span>Edit</span></button>
+        <button class="standard sm"><i class="fas fa-trash-alt"></i><span>Delete</span></button>
+      </div>
     </div>
   </div>
+
+  <div class="load-more">LOAD MORE</div>
 </section>

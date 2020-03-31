@@ -1,7 +1,10 @@
 @import "app/styles/variables";
 
+$card-left-block-width: 800px;
+
 section.search {
   margin-top: calc(#{$basic-module} * 2);
+  display: flex;
 
   button {
     margin-left: 0.5rem;
@@ -10,6 +13,7 @@ section.search {
 
 section.add-course {
   margin-top: calc(#{$basic-module} * 2);
+  margin-bottom: calc(#{$basic-module} * 6);
 
   button {
     float: right;
@@ -27,21 +31,80 @@ section.add-course {
   }
 }
 
+.basic-card {
+  background-color: $light;
+  box-sizing: border-box;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  border-radius: 8px;
+  width: $lg-panel-width;
+  margin: calc(#{$basic-module} * 2) 0;
+  padding: calc(#{$basic-module} * 2);
+}
+
 section.cards {
   .card {
-    background-color: $light;
-    box-sizing: border-box;
-    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
-    border-radius: 8px;
+    @extend .basic-card;
     height: 163px;
-    margin: calc(#{$basic-module} * 2) 0;
-    padding: calc(#{$basic-module} * 2);
+
+    .card-content {
+      display: grid;
+      grid-template-columns: $card-left-block-width auto;
+
+      .card-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        button {
+          margin-left: 0.7rem;
+        }
+      }
+
+      .description {
+        color: $slate-grey;
+        margin-top: 8px;
+        text-align: justify;
+        line-height: 1.71;
+        letter-spacing: normal;
+        height: 5rem;
+        overflow-y: hidden;
+      }
+    }
+
+    .card-info {
+      display: flex;
+      align-items: center;
+      color: $light-grey;
+
+      i {
+        font-size: 14px;
+        margin-left: 1rem;
+        margin-right: 0.5rem;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: $card-left-block-width;
+    }
   }
 
-  .description {
-    color: $slate-grey;
-    max-width: 800px;
-    margin-top: 8px;
-    text-align: justify;
+  .load-more {
+    @extend .basic-card;
+    color: $soft-blue;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .load-more:hover {
+    text-decoration: none;
   }
 }

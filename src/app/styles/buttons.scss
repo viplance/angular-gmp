@@ -6,12 +6,29 @@ input[type="button"] {
   border-radius: 3px;
   color: $light;
   cursor: pointer;
-  display: inline;
+  display: flex;
+  align-items: center;
+
+  &.sm {
+    font-size: 12px;
+    padding: 0 calc(#{$basic-module} * 1.5);
+    height: calc(#{$basic-module} * 2);
+
+    i {
+      font-size: 14px;
+      margin-right: $basic-module;
+    }
+  }
 
   &.md {
     font-size: 14px;
     padding: 0 calc(#{$basic-module} * 2);
     height: calc(#{$basic-module} * 3);
+
+    i {
+      font-size: 18px;
+      margin-right: $basic-module;
+    }
   }
 
   &.lg {
@@ -23,6 +40,7 @@ input[type="button"] {
   &.search {
     background-color: $sick-green;
     color: $light;
+    width: fit-content;
   }
 
   &.standard {

@@ -1,16 +1,17 @@
 @import "app/styles/variables";
 
 :host {
-  display: grid;
+  display: flex;
   background-color: $charcoal-grey;
   color: $silver;
   align-items: center;
-  justify-content: right;
-  min-width: $lg-panel-width;
+  justify-content: center;
 }
 
 footer {
   margin-right: calc(#{$basic-module} * 2);
+  min-width: $lg-panel-width;
+  text-align: right;
 }
 
 @media (max-width: $lg-panel-width) {

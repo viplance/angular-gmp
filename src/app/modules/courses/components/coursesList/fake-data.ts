@@ -3,7 +3,7 @@ export const courses = [
     id: 1,
     title: 'Video Course 1. Name tag',
     creationDate: new Date('January 10, 2020 15:00:00'),
-    duration: 2,
+    duration: '1h 30m',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
@@ -16,7 +16,7 @@ export const courses = [
     id: 2,
     title: 'Video Course 2. Name tag',
     creationDate: new Date('January 12, 2020 17:00:00'),
-    duration: 3,
+    duration: '1h 30m',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
@@ -29,7 +29,7 @@ export const courses = [
     id: 3,
     title: 'Video Course 3. Name tag',
     creationDate: new Date('January 15, 2020 10:00:00'),
-    duration: 5,
+    duration: '1h 5m',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
@@ -42,7 +42,7 @@ export const courses = [
     id: 4,
     title: 'Video Course 4. Name tag',
     creationDate: new Date('January 19, 2020 11:00:00'),
-    duration: 3,
+    duration: '8h',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
@@ -55,7 +55,7 @@ export const courses = [
     id: 5,
     title: 'Video Course 5. Name tag',
     creationDate: new Date('January 21, 2020 10:00:00'),
-    duration: 1,
+    duration: '3h',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
@@ -68,7 +68,7 @@ export const courses = [
     id: 6,
     title: 'Video Course 6. Name tag',
     creationDate: new Date('January 23, 2020 12:00:00'),
-    duration: 6,
+    duration: '5h 15m',
     description: `Learn about where you can find course descriptions, what information they
     include, how they work, and details about various components of a course
     description. Course descriptions report information about a university or
