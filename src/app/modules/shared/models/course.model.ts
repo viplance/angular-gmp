@@ -4,6 +4,6 @@ export class CourseModel implements Course {
   id: number;
   title: string;
   creationDate: Date;
-  duration: number;
+  duration: string;
   description: string;
 }
