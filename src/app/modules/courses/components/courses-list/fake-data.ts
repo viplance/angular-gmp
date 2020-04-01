@@ -12,7 +12,8 @@ export const courses: Course[] = [
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
     all courses offered during a particular semester.
-  </div>`
+  </div>`,
+    topRated: true
   },
   {
     id: 2,
@@ -64,7 +65,8 @@ export const courses: Course[] = [
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
     all courses offered during a particular semester.
-  </div>`
+  </div>`,
+    topRated: true
   },
   {
     id: 6,
@@ -77,7 +79,8 @@ export const courses: Course[] = [
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
     all courses offered during a particular semester.
-  </div>`
+  </div>`,
+    topRated: true
   },
   {
     id: 7,
@@ -90,6 +93,7 @@ export const courses: Course[] = [
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
     all courses offered during a particular semester.
-  </div>`
+  </div>`,
+    topRated: true
   }
 ];
