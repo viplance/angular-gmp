@@ -1,11 +1,11 @@
 <section class="card-header">
   <h1>
-    {{ course.title }}
+    {{ course.title | uppercase }}
     <i *ngIf="course.topRated" class="fas fa-star"></i>
   </h1>
   <div class="card-info">
     <i class="far fa-clock"></i>
-    <span>{{ course.duration }}</span>
+    <span>{{ course.duration | duration }}</span>
     <i class="far fa-calendar"></i>
     <span>{{ course.creationDate | date }}</span>
   </div>

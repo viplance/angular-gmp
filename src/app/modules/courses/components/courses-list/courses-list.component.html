@@ -1,6 +1,6 @@
 <section class="search">
-  <app-search></app-search>
-  <button class="search lg">Search</button>
+  <app-search (text)="setSearchText($event)"></app-search>
+  <button (click)="search()" class="search lg">Search</button>
 </section>
 
 <section class="add-course">

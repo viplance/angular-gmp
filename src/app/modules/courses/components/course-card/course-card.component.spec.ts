@@ -38,7 +38,7 @@ describe('CourseCardComponent', () => {
   it('should render title', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      component.course.title
+      component.course.title.toUpperCase()
     );
   });
 });
