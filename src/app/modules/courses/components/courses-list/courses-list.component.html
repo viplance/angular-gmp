@@ -14,5 +14,7 @@
   <app-course-card appFreshCourse *ngFor="let course of courses" [course]="course" (delete)="deleteCourse($event)"
     (edit)="editCourse($event)"></app-course-card>
 
-  <div (click)="loadMore()" class="load-more">LOAD MORE</div>
+  <div *ngIf="courses.length > 5" (click)="loadMore()" class="button-card">LOAD MORE</div>
+
+  <div *ngIf="courses.length === 0" class="button-card">NO DATA. FEEL FREE TO ADD NEW COURSE</div>
 </section>
