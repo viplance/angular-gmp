@@ -8,6 +8,10 @@ $card-left-block-width: 800px;
   display: block;
   height: 163px;
 
+  &.top-rated {
+    background-color: #feffc4;
+  }
+
   .card-content {
     display: grid;
     grid-template-columns: $card-left-block-width auto;

@@ -11,6 +11,7 @@ import {
   TitleComponent,
   UserLoginComponent
 } from './components';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -20,7 +21,8 @@ import {
     LogoComponent,
     SearchComponent,
     TitleComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    FilterPipe
   ],
   exports: [
     CommonModule,
@@ -31,7 +33,9 @@ import {
     LogoComponent,
     SearchComponent,
     TitleComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    // pipes
+    FilterPipe
   ]
 })
 export class SharedModule {}

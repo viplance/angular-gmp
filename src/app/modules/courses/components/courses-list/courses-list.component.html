@@ -1,6 +1,6 @@
 <section class="search">
-  <app-search></app-search>
-  <button class="search lg">Search</button>
+  <app-search (text)="setSearchText($event)"></app-search>
+  <button (click)="search()" class="search lg">Search</button>
 </section>
 
 <section class="add-course">
@@ -11,8 +11,10 @@
 </section>
 
 <section class="cards">
-  <app-course-card *ngFor="let course of courses" [course]="course" (delete)="deleteCourse($event)"
-    (edit)="editCourse($event)"></app-course-card>
+  <app-course-card *ngFor="let course of courses" [course]="course" [class.top-rated]="course.topRated"
+    (delete)="deleteCourse($event)" appStatusIcons appFreshCourse (edit)="editCourse($event)"></app-course-card>
 
-  <div (click)="loadMore()" class="load-more">LOAD MORE</div>
+  <div *ngIf="courses.length > 5" (click)="loadMore()" class="button-card">LOAD MORE</div>
+
+  <div *ngIf="courses.length === 0" class="button-card">NO DATA. FEEL FREE TO ADD NEW COURSE</div>
 </section>

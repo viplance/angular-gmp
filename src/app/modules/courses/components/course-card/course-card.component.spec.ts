@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseCardComponent } from './course-card.component';
+import { DurationPipe } from '../../pipes/duration.pipe';
 import { courses as Courses } from '../courses-list/fake-data';
 
 describe('CourseCardComponent', () => {
@@ -8,7 +9,7 @@ describe('CourseCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseCardComponent]
+      declarations: [CourseCardComponent, DurationPipe]
     }).compileComponents();
   }));
 
@@ -38,7 +39,7 @@ describe('CourseCardComponent', () => {
   it('should render title', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      component.course.title
+      component.course.title.toUpperCase()
     );
   });
 });

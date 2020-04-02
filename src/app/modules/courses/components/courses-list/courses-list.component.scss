@@ -41,7 +41,7 @@ section.add-course {
 }
 
 section.cards {
-  .load-more {
+  .button-card {
     @extend .basic-card;
     color: $soft-blue;
     font-size: 12px;
@@ -50,7 +50,7 @@ section.cards {
     text-decoration: underline;
   }
 
-  .load-more:hover {
+  .button-card:hover {
     text-decoration: none;
   }
 }
