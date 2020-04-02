@@ -1,3 +1,4 @@
+export * from './confirm/confirm.component';
 export * from './header/header.component';
 export * from './logo/logo.component';
 export * from './search/search.component';

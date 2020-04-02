@@ -3,7 +3,7 @@
 button,
 input[type="button"] {
   border: none;
-  border-radius: 3px;
+  border-radius: $small-radius;
   color: $light;
   cursor: pointer;
   display: flex;

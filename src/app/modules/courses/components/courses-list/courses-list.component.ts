@@ -3,6 +3,7 @@ import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { courses as Courses } from '../../fake-data';
 import { CoursesService } from '../../services/courses.service';
+import { ConfirmService } from 'app/modules/shared/services';
 
 @Component({
   selector: 'app-courses',
@@ -14,15 +15,32 @@ export class CoursesListComponent implements OnInit {
   searchText: string;
   filter = new FilterPipe();
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(private confirmService: ConfirmService, private coursesService: CoursesService) {}
 
   ngOnInit(): void {
     this.refreshList();
   }
 
   deleteCourse(id: number): void {
-    this.coursesService.delete(id);
-    this.refreshList();
+    this.confirmService.showConfirmDialog({
+      message: 'Do you really want to delete this course?',
+      buttons: [
+        {
+          title: 'Yes',
+          action: (): void => {
+            this.coursesService.delete(id);
+            this.refreshList();
+            this.confirmService.close();
+          }
+        },
+        {
+          title: 'No',
+          action: (): void => {
+            this.confirmService.close();
+          }
+        }
+      ]
+    });
   }
 
   editCourse(id: number): void {
