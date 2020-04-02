@@ -11,8 +11,8 @@
 </section>
 
 <section class="cards">
-  <app-course-card [class.top-rated]="course.topRated" appFreshCourse *ngFor="let course of courses" [course]="course" (delete)="deleteCourse($event)"
-    (edit)="editCourse($event)"></app-course-card>
+  <app-course-card *ngFor="let course of courses" [course]="course" [class.top-rated]="course.topRated"
+    (delete)="deleteCourse($event)" appStatusIcons appFreshCourse (edit)="editCourse($event)"></app-course-card>
 
   <div *ngIf="courses.length > 5" (click)="loadMore()" class="button-card">LOAD MORE</div>
 

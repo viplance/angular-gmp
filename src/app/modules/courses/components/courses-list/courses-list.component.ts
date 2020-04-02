@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { courses as Courses } from './fake-data';
 import { FilterPipe } from 'app/modules/shared/pipes';
+import { Course } from 'app/modules/shared/interfaces';
 
 @Component({
   selector: 'app-courses',
@@ -8,7 +9,7 @@ import { FilterPipe } from 'app/modules/shared/pipes';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent {
-  courses: {}[] = Courses;
+  courses: Course[] = Courses;
   searchText: string;
   filter = new FilterPipe();
 
