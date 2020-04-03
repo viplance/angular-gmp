@@ -1,3 +1,5 @@
-export const environment = {
+import { Environment } from './environment.interface';
+export const environment: Environment = {
+  localStorageName: 'angular-gmp',
   production: true
 };
