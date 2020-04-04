@@ -1,12 +1,32 @@
 @import "variables.scss";
 
 input {
+  position: relative;
   width: 100%;
   height: calc(#{$basic-module} * 3);
   padding: calc(#{$basic-module} / 2) $basic-module;
   box-sizing: border-box;
   border: 1px solid $pale-grey;
   border-radius: $small-radius;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.input-required {
+  color: $battleship-grey;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.input-label {
+  color: $slate-grey;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .line {

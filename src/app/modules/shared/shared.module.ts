@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+// components
 import {
   ConfirmComponent,
   FooterComponent,
@@ -12,8 +13,10 @@ import {
   TitleComponent,
   UserLoginComponent
 } from './components';
+// pipes
 import { FilterPipe } from './pipes';
-// import { ConfirmService } from './services';
+// directives
+import { LabelDirective } from './directives';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -27,7 +30,9 @@ import { FilterPipe } from './pipes';
     TitleComponent,
     UserLoginComponent,
     // pipes
-    FilterPipe
+    FilterPipe,
+    // directives
+    LabelDirective
   ],
   // providers: [ConfirmService],
   exports: [
@@ -42,7 +47,9 @@ import { FilterPipe } from './pipes';
     TitleComponent,
     UserLoginComponent,
     // pipes
-    FilterPipe
+    FilterPipe,
+    // directives
+    LabelDirective
   ]
 })
 export class SharedModule {}

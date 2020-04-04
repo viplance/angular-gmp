@@ -37,7 +37,7 @@ input[type="button"] {
     height: calc(#{$basic-module} * 4);
   }
 
-  &.search {
+  &.success {
     background-color: $sick-green;
     color: $light;
     width: fit-content;
@@ -46,4 +46,10 @@ input[type="button"] {
   &.standard {
     background-color: $dark-sky-blue;
   }
+}
+
+button:disabled,
+input[type="button"]:disabled {
+  background-color: $pale-grey;
+  color: $cool-grey;
 }

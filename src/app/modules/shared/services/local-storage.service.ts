@@ -21,6 +21,7 @@ export class LocalStorageService {
   // Remove all information about application from local storage
   clearLocal(): void {
     localStorage.removeItem(this.LOCAL_STORAGE_NAME);
+    this.updateLocal.next({});
   }
 
   // Get information from local storage
