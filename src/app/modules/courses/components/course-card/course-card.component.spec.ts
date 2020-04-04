@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseCardComponent } from './course-card.component';
 import { DurationPipe } from '../../pipes/duration.pipe';
-import { courses as Courses } from '../courses-list/fake-data';
+import { courses as Courses } from '../../fake-data';
 
 describe('CourseCardComponent', () => {
   let component: CourseCardComponent;

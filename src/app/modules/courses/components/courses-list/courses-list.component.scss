@@ -1,5 +1,4 @@
 @import "app/styles/variables";
-@import "../index.scss";
 
 section.search {
   margin-top: calc(#{$basic-module} * 2);
@@ -30,19 +29,8 @@ section.add-course {
   }
 }
 
-.basic-card {
-  background-color: $light;
-  box-sizing: border-box;
-  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
-  border-radius: 8px;
-  width: $lg-panel-width;
-  margin: calc(#{$basic-module} * 2) 0;
-  padding: calc(#{$basic-module} * 2);
-}
-
 section.cards {
   .button-card {
-    @extend .basic-card;
     color: $soft-blue;
     font-size: 12px;
     cursor: pointer;

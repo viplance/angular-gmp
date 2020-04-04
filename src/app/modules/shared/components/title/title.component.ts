@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class TitleComponent {
   @Input() title: string;
+
+  @HostBinding('class.hidden') get valid(): boolean {
+    return this.title === null;
+  }
 }

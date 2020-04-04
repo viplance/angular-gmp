@@ -5,13 +5,12 @@
   background-color: $light;
   align-items: center;
   justify-content: center;
+  height: $lg-panel-height;
 }
 
 section {
   display: grid;
   align-items: center;
-  background-color: $light;
-  height: $lg-panel-height;
   min-width: $lg-panel-width;
 }
 

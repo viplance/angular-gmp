@@ -1,5 +1,7 @@
 // import here all styles which should be global
-@import "reset";
-@import "grid";
-@import "fonts";
-@import "buttons";
+@import "buttons.scss";
+@import "fonts.scss";
+@import "global.scss";
+@import "grid.scss";
+@import "inputs.scss";
+@import "reset.scss";

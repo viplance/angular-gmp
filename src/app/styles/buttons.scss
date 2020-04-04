@@ -1,9 +1,9 @@
-@import "app/styles/variables";
+@import "variables.scss";
 
 button,
 input[type="button"] {
   border: none;
-  border-radius: 3px;
+  border-radius: $small-radius;
   color: $light;
   cursor: pointer;
   display: flex;
@@ -37,7 +37,7 @@ input[type="button"] {
     height: calc(#{$basic-module} * 4);
   }
 
-  &.search {
+  &.success {
     background-color: $sick-green;
     color: $light;
     width: fit-content;
@@ -46,4 +46,10 @@ input[type="button"] {
   &.standard {
     background-color: $dark-sky-blue;
   }
+}
+
+button:disabled,
+input[type="button"]:disabled {
+  background-color: $pale-grey;
+  color: $cool-grey;
 }

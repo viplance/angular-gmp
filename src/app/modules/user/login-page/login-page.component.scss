@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.basic-card {
+  min-width: 368px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 2rem;
+}
+
+a {
+  margin-left: 0.5rem;
+}
+
+.line.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}

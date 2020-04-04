@@ -1,11 +1,19 @@
-@import "app/styles/variables";
+@import "variables.scss";
 
 .basic-card {
   background-color: $light;
   box-sizing: border-box;
   box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
-  border-radius: 8px;
-  width: $lg-panel-width;
+  border-radius: $large-radius;
   margin: calc(#{$basic-module} * 2) 0;
   padding: calc(#{$basic-module} * 2);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.secondary-link {
+  color: $soft-blue-two;
+  font-size: 12px;
 }
