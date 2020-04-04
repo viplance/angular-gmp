@@ -1,12 +1,11 @@
 <app-header></app-header>
 
-<app-title [title]="title | async"></app-title>
+<section class="content-container">
+  <app-title [title]="titleText | async"></app-title>
 
-<section>
-  <div class="content">
+  <section class="content-wrapper">
     <router-outlet></router-outlet>
-  </div>
-  <div class="footer-gag"></div>
+  </section>
 </section>
 
 <app-footer></app-footer>

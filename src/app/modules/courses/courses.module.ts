@@ -11,20 +11,14 @@ import { DurationPipe } from './pipes/duration.pipe';
 const routes: Routes = [
   {
     path: '',
-    data: { title: 'Courses' },
+    data: { title: 'Courses', breadcrumbs: ['Courses'] },
     component: CoursesListComponent
   }
 ];
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  declarations: [
-    CoursesListComponent,
-    CourseCardComponent,
-    FreshCourseDirective,
-    DurationPipe,
-    StatusIconsDirective
-  ],
+  declarations: [CoursesListComponent, CourseCardComponent, FreshCourseDirective, DurationPipe, StatusIconsDirective],
   exports: [RouterModule]
 })
 export class CoursesModule {}

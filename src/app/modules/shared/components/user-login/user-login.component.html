@@ -1,9 +1,9 @@
 <aside>
-  <section>
+  <section *ngIf="isAuthenticated">
     <img src="assets/ic-user.svg" alt="User login" />
     <span class="light-text">User login</span>
   </section>
-  <section>
+  <section *ngIf="isAuthenticated" (click)="logout()">
     <img src="assets/ic-exit.svg" alt="Log off" />
     <span class="light-text">Log off</span>
   </section>

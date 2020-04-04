@@ -1,11 +1,13 @@
-@import "variables";
+@import "variables.scss";
 
 app-header {
   grid-area: header;
 }
 
-app-title {
-  grid-area: title;
+.content-container {
+  grid-area: content;
+  height: 100%;
+  background-color: $pale-grey-two;
 }
 
 app-footer {
@@ -17,21 +19,11 @@ app-footer {
 
 app-root {
   display: grid;
+  height: 100vh;
   grid-template-areas:
     "header"
-    "title"
     "content";
   grid-template-rows:
     $lg-panel-height /* Header */
-    $lg-panel-height /* Title */
     auto; /* Content */
-}
-
-@media (max-width: $lg-panel-width) {
-  app-root {
-    grid-template-rows:
-      $sm-panel-height /* Header */
-      $sm-panel-height /* Title */
-      auto; /* Content */
-  }
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, RouterEvent, ResolveStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+import { RouterData } from 'app/modules/shared/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +11,13 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title: Observable<string>;
+  titleText: Observable<string>;
 
-  constructor(private router: Router) {
-    this.title = this.router.events.pipe(
+  constructor(private router: Router, private titleService: Title) {
+    this.titleText = this.router.events.pipe(
       filter((event: RouterEvent) => event instanceof ResolveStart),
       map((event: ResolveStart) => {
-        let data = null;
+        let data: RouterData = {};
         let route = event.state.root;
 
         while (route) {
@@ -23,7 +25,12 @@ export class AppComponent {
           route = route.firstChild;
         }
 
-        return data.title || null;
+        const { title, breadcrumbs }: RouterData = data;
+        if (title) {
+          this.titleService.setTitle(title);
+        }
+
+        return breadcrumbs && breadcrumbs.length > 0 ? breadcrumbs.join(' / ') : null;
       })
     );
   }

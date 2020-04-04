@@ -1,12 +1,11 @@
 @import "app/styles/variables";
-@import "../index.scss";
 
 $card-left-block-width: 800px;
 
 :host {
-  @extend .basic-card;
   display: block;
   height: 163px;
+  width: $lg-panel-width;
 
   &.top-rated {
     background-color: #feffc4;

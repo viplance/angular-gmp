@@ -1,0 +1,17 @@
+@import "variables.scss";
+
+input {
+  width: 100%;
+  height: calc(#{$basic-module} * 3);
+  padding: calc(#{$basic-module} / 2) $basic-module;
+  box-sizing: border-box;
+  border: 1px solid $pale-grey;
+  border-radius: $small-radius;
+}
+
+.line {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
