@@ -17,6 +17,7 @@ import {
 import { FilterPipe } from './pipes';
 // directives
 import { LabelDirective } from './directives';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -33,6 +34,7 @@ import { LabelDirective } from './directives';
     FilterPipe,
     // directives
     LabelDirective,
+    NotFoundComponent,
   ],
   // providers: [ConfirmService],
   exports: [

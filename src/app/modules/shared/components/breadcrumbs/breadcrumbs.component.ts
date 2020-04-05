@@ -10,6 +10,6 @@ export class BreadcrumbsComponent {
   @Input() breadcrumbs: string[];
 
   @HostBinding('class.hidden') get valid(): boolean {
-    return this.breadcrumbs === null;
+    return this.breadcrumbs === null || (this.breadcrumbs && this.breadcrumbs.length === 0);
   }
 }
