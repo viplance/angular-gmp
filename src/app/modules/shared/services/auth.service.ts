@@ -3,7 +3,7 @@ import { LocalStorageService } from './local-storage.service';
 import { User } from '../interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   constructor(private lS: LocalStorageService) {}
@@ -12,8 +12,8 @@ export class AuthService {
     return this.lS.getLocal()['user'];
   }
 
-  login(user: User, token: string): void {
-    this.lS.setLocal({ user, token });
+  login({ email, password }: { email: string; password: string }): void {
+    this.lS.setLocal({ user: { firstName: 'John', lastName: 'Deph' }, token: 'sdfsd4534h34jhg' });
   }
 
   logout(): void {
@@ -21,6 +21,6 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.lS.hasLocal('user');
+    return this.lS.hasLocal('user') && this.lS.hasLocal('token');
   }
 }

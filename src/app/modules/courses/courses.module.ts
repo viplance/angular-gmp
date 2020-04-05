@@ -19,7 +19,7 @@ const routes: Routes = [
     component: NewCourseComponent,
   },
   {
-    path: ':id',
+    path: ':id/edit',
     data: { title: 'Edit course', breadcrumbs: ['Courses', 'Edit Course'] },
     component: EditCourseComponent,
   },
