@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 })
 export class LocalStorageService {
   LOCAL_STORAGE_NAME = environment.localStorageName;
-  updateLocal = new BehaviorSubject<object>(this.getLocal());
+  updateLocal = new Subject<object>();
 
   // Store information in local storage
   setLocal(obj: object): void {

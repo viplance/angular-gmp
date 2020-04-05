@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Course } from 'app/modules/shared/interfaces';
 
 @Component({
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.scss']
+  styleUrls: ['./course-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseCardComponent implements OnInit {
   @Input() course: Course;

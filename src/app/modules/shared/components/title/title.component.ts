@@ -1,9 +1,10 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-title',
   templateUrl: './title.component.html',
-  styleUrls: ['./title.component.scss']
+  styleUrls: ['./title.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleComponent {
   @Input() title: string;

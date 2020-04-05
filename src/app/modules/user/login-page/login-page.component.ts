@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/modules/shared/services';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent {
   constructor(private authService: AuthService, private router: Router) {}

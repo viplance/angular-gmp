@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { environment } from 'environments/environment';
@@ -9,7 +9,8 @@ import { ConfirmService } from 'app/modules/shared/services';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses-list.component.html',
-  styleUrls: ['./courses-list.component.scss']
+  styleUrls: ['./courses-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent implements OnInit {
   counter: number = environment.coursesListLength;
