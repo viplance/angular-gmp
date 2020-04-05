@@ -20,7 +20,7 @@ import { LabelDirective } from './directives';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   declarations: [
     // components
     BreadcrumbsComponent,

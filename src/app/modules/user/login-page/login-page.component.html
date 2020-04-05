@@ -1,12 +1,13 @@
 <div class="basic-card">
-  <div class="line">
+  <div class="line header">
     <h1>Test</h1>
+    <span class="error-message">{{ errorMessage }}</span>
   </div>
   <div class="line">
-    <input autofocus appLabel="E-mail:" required placeholder="example@mail.com">
+    <input [(ngModel)]="email" autofocus appLabel="E-mail:" required placeholder="example@mail.com" minlength="3">
   </div>
   <div class="line">
-    <input appLabel="Password:" required placeholder="Enter password" type="password">
+    <input [(ngModel)]="password" appLabel="Password:" required placeholder="Enter password" type="password" minlength="6">
   </div>
   <div class="line buttons">
     <a class="secondary-link" href="#">Forgot password?</a>

@@ -1,3 +1,5 @@
+@import "app/styles/variables";
+
 :host {
   display: flex;
   height: 100%;
@@ -8,14 +10,26 @@
   min-width: 368px;
 }
 
+a {
+  margin-left: 0.5rem;
+}
+
+.error-message {
+  font-size: 12px;
+  color: $orange-red;
+}
+
 h1 {
   font-weight: 600;
   font-size: 24px;
-  margin-bottom: 2rem;
+  width: fit-content;
 }
 
-a {
-  margin-left: 0.5rem;
+.line.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .line.buttons {
