@@ -1,5 +1,7 @@
 @import "app/styles/variables";
 
+$confirm-padding: 1rem 1.5rem;
+
 :host {
   display: none;
 }
@@ -32,17 +34,39 @@
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  padding: 2rem;
   position: relative;
-  border-radius: $large-radius;
-  background: $light;
+  color: $slate-grey;
 
-  .buttons {
-    margin-top: 1rem;
+  .confirm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $pale-grey-two;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: $large-radius $large-radius 0 0;
+    padding: $confirm-padding;
+
+    i {
+      color: $cool-grey;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .confirm-message {
+    background-color: $light;
+    padding: $confirm-padding;
+  }
+
+  .confirm-buttons {
+    background-color: $light;
+    padding: $confirm-padding;
+    border-radius: 0 0 $large-radius $large-radius;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 
     button {
       float: left;
@@ -52,12 +76,5 @@
         margin-left: 0;
       }
     }
-  }
-
-  & > i {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ConfirmButton } from '../interfaces';
+import { ConfirmDialog } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ConfirmService {
     this.closeSubject.next();
   }
 
-  showConfirmDialog(data: { message: string; buttons: ConfirmButton[] }): void {
+  showConfirmDialog(data: ConfirmDialog): void {
     this.confirmDataSubject.next(data);
   }
 }

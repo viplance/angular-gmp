@@ -1,12 +1,15 @@
 <div class="confirm-cover"></div>
 <div class="confirm-container">
   <div class="confirm-dialog">
-    <i class="fas fa-times"></i>
-    <div>
+    <div class="confirm-header">
+      <span>{{ header }}</span>
+      <i class="fas fa-times"></i>
+    </div>
+    <div class="confirm-message">
       {{ message }}
     </div>
-    <div class="buttons">
-      <button class="md standard" *ngFor="let button of buttons"
+    <div class="confirm-buttons">
+      <button *ngFor="let button of buttons" [className]="button.class || 'md standard'"
         (click)="executeAction(button)">{{ button.title }}</button>
     </div>
   </div>

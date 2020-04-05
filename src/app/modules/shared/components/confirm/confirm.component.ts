@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { ConfirmService } from '../../services';
-import { ConfirmButton } from '../../interfaces';
+import { ConfirmButton, ConfirmDialog } from '../../interfaces';
 
 @Component({
   selector: 'app-confirm',
@@ -9,6 +9,7 @@ import { ConfirmButton } from '../../interfaces';
 })
 export class ConfirmComponent {
   buttons: ConfirmButton[];
+  header: string;
   message: string;
 
   constructor(private confirmService: ConfirmService, private el: ElementRef) {
@@ -16,9 +17,10 @@ export class ConfirmComponent {
       this.close();
     });
     this.confirmService.confirmDataSubject.subscribe(
-      ({ message, buttons }: { message: string; buttons: ConfirmButton[] }) => {
+      ({ header, message, buttons }: ConfirmDialog) => {
         this.show();
         this.buttons = buttons;
+        this.header = header || 'Confirm';
         this.message = message;
       }
     );

@@ -1,5 +1,9 @@
 @import "app/styles/variables";
 
+section {
+  width: $lg-panel-width;
+}
+
 section.search {
   margin-top: calc(#{$basic-module} * 2);
   display: flex;

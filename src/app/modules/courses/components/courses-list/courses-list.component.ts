@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
+import { environment } from 'environments/environment';
 import { courses as Courses } from '../../fake-data';
 import { CoursesService } from '../../services/courses.service';
 import { ConfirmService } from 'app/modules/shared/services';
@@ -11,31 +12,40 @@ import { ConfirmService } from 'app/modules/shared/services';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
+  counter: number = environment.coursesListLength;
   courses: Course[];
   searchText: string;
   filter = new FilterPipe();
 
   constructor(private confirmService: ConfirmService, private coursesService: CoursesService) {}
 
+  get paginatedCourses(): Course[] {
+    return this.courses.slice(0, this.counter);
+  }
+
   ngOnInit(): void {
     this.refreshList();
   }
 
   deleteCourse(id: number): void {
+    const course = this.courses.find((cour: Course) => cour.id === id);
     this.confirmService.showConfirmDialog({
-      message: 'Do you really want to delete this course?',
+      header: 'Delete course?',
+      message: `Do you really want to delete ${course.title}?`,
       buttons: [
         {
-          title: 'Yes',
+          title: 'No',
+          class: 'md cancel',
           action: (): void => {
-            this.coursesService.delete(id);
-            this.refreshList();
             this.confirmService.close();
           }
         },
         {
-          title: 'No',
+          title: 'Yes, delete',
+          class: 'md success',
           action: (): void => {
+            this.coursesService.delete(id);
+            this.refreshList();
             this.confirmService.close();
           }
         }
@@ -48,7 +58,8 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    console.log('Load more');
+    this.counter += environment.coursesListLength;
+    this.refreshList();
   }
 
   refreshList(): void {
@@ -60,6 +71,7 @@ export class CoursesListComponent implements OnInit {
       text: this.searchText,
       field: 'title'
     });
+    this.counter = environment.coursesListLength;
   }
 
   setSearchText(text: string): void {
