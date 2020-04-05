@@ -4,6 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture;
+  let app;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -12,14 +15,16 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  const fixture = TestBed.createComponent(AppComponent);
-  const app = fixture.debugElement.componentInstance;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
+  });
 
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title`, () => {
-    expect(app.title).toEqual('Angular Global Mentoring Program');
+  it(`should have breadcrumbs`, () => {
+    expect(app.breadcrumbs).toBeTruthy();
   });
 });

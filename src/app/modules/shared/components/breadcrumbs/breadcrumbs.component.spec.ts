@@ -23,10 +23,4 @@ describe('BreadcrumbsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should render breadcrumbs', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.breadcrumbs').textContent).toContain(testBreadcrumbs);
-  });
 });

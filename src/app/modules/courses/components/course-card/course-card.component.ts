@@ -5,7 +5,7 @@ import { Course } from 'app/modules/shared/interfaces';
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseCardComponent implements OnInit {
   @Input() course: Course;
@@ -20,9 +20,5 @@ export class CourseCardComponent implements OnInit {
 
   deleteCourse(): void {
     this.delete.emit(this.course.id);
-  }
-
-  editCourse(): void {
-    this.edit.emit(this.course.id);
   }
 }

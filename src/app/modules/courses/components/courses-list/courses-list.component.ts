@@ -10,7 +10,7 @@ import { ConfirmService } from 'app/modules/shared/services';
   selector: 'app-courses',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesListComponent implements OnInit {
   counter: number = environment.coursesListLength;
@@ -39,7 +39,7 @@ export class CoursesListComponent implements OnInit {
           class: 'md cancel',
           action: (): void => {
             this.confirmService.close();
-          }
+          },
         },
         {
           title: 'Yes, delete',
@@ -48,14 +48,10 @@ export class CoursesListComponent implements OnInit {
             this.coursesService.delete(id);
             this.refreshList();
             this.confirmService.close();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
-  }
-
-  editCourse(id: number): void {
-    console.log('Edit course', id);
   }
 
   loadMore(): void {
@@ -70,7 +66,7 @@ export class CoursesListComponent implements OnInit {
   search(): void {
     this.courses = this.filter.transform(Courses, {
       text: this.searchText,
-      field: 'title'
+      field: 'title',
     });
     this.counter = environment.coursesListLength;
   }
