@@ -15,12 +15,12 @@ export class LoginPageComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  isFormValid(): boolean {
+  get isFormValid(): boolean {
     return this.email && this.email.length > 3 && this.password && this.password.length > 5;
   }
 
   login(): void {
-    if (this.isFormValid()) {
+    if (this.isFormValid) {
       this.errorMessage = null;
       this.authService.login({ email: this.email, password: this.password });
       this.authService.getUserInfo();

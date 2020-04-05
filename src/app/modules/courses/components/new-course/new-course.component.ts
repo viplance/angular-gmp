@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CoursesService } from '../../services';
+import { Course } from 'app/modules/shared/interfaces';
+import { CourseModel } from 'app/modules/shared/models';
 
 @Component({
   selector: 'app-new-course',
@@ -6,9 +11,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-course.component.scss'],
 })
 export class NewCourseComponent {
-  constructor() {}
+  course: Course = new CourseModel;
+
+  constructor(private coursesService: CoursesService, private router: Router) {}
 
   add(): void {
-    console.log('Add course');
+    this.coursesService.create(this.course);
+    this.router.navigate(['/courses']);
+  }
+
+  setCreationDate($event): void {
+    this.course.creationDate = new Date($event);
   }
 }

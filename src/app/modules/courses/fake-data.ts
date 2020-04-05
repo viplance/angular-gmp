@@ -11,9 +11,8 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`,
-    topRated: true
+    all courses offered during a particular semester.`,
+    topRated: true,
   },
   {
     id: 2,
@@ -25,8 +24,7 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`
+    all courses offered during a particular semester.`,
   },
   {
     id: 3,
@@ -38,8 +36,7 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`
+    all courses offered during a particular semester.`,
   },
   {
     id: 4,
@@ -51,8 +48,7 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`
+    all courses offered during a particular semester.`,
   },
   {
     id: 5,
@@ -64,9 +60,8 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`,
-    topRated: true
+    all courses offered during a particular semester.`,
+    topRated: true,
   },
   {
     id: 6,
@@ -78,9 +73,8 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`,
-    topRated: true
+    all courses offered during a particular semester.`,
+    topRated: true,
   },
   {
     id: 7,
@@ -92,8 +86,7 @@ export const courses: Course[] = [
     description. Course descriptions report information about a university or
     college's classes. They're published both in course catalogs that outline
     degree requirements and in course schedules that contain descriptions for
-    all courses offered during a particular semester.
-  </div>`,
-    topRated: true
-  }
+    all courses offered during a particular semester.`,
+    topRated: true,
+  },
 ];

@@ -7,10 +7,11 @@
     <input [(ngModel)]="email" autofocus appLabel="E-mail:" required placeholder="example@mail.com" minlength="3">
   </div>
   <div class="line">
-    <input [(ngModel)]="password" appLabel="Password:" required placeholder="Enter password" type="password" minlength="6">
+    <input [(ngModel)]="password" appLabel="Password:" required placeholder="Enter password" type="password"
+      minlength="6">
   </div>
   <div class="line buttons">
     <a class="secondary-link" href="#">Forgot password?</a>
-    <button (click)="login()" class="md success">Login</button>
+    <button (click)="login()" [className]="isFormValid ? 'md success' : 'md disabled'">Login</button>
   </div>
 </div>

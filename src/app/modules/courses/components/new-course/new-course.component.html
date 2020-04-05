@@ -3,16 +3,18 @@
     <h1>New course</h1>
   </div>
   <div class="line">
-    <input autofocus appLabel="Title:" required placeholder="Text input">
+    <input [(ngModel)]="course.title" autofocus appLabel="Title:" required placeholder="Text input">
   </div>
   <div class="line">
-    <textarea appLabel="Description:" required placeholder="Add description"></textarea>
+    <textarea [(ngModel)]="course.description" appLabel="Description:" required
+      placeholder="Add description"></textarea>
   </div>
   <div class="line">
-    <input appLabel="Duration:" required placeholder="minutes" type="number">
+    <input [(ngModel)]="course.duration" appLabel="Duration:" required placeholder="minutes" type="number">
   </div>
   <div class="line">
-    <input appLabel="Date:" required placeholder="mm-dd-yyyy" type="date">
+    <input [ngModel]="course.creationDate | date:'yyyy-MM-dd'" (ngModelChange)="setCreationDate($event)" appLabel="Date:" required placeholder="mm-dd-yyyy"
+      type="date">
   </div>
   <div class="line buttons-container">
     <div class="buttons">
