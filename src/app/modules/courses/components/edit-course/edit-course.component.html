@@ -1,0 +1,25 @@
+<div class="basic-card">
+  <div class="line">
+    <h1>Edit course</h1>
+  </div>
+  <div class="line">
+    <input autofocus appLabel="Title:" required placeholder="Text input">
+  </div>
+  <div class="line">
+    <textarea appLabel="Description:" required placeholder="Add description"></textarea>
+  </div>
+  <div class="line">
+    <input appLabel="Duration:" required placeholder="minutes" type="number">
+  </div>
+  <div class="line">
+    <input appLabel="Date:" required placeholder="mm-dd-yyyy" type="date">
+  </div>
+  <div class="line buttons-container">
+    <div class="buttons">
+      <a routerLink="/courses">
+        <button class="md cancel">Cancel</button>
+      </a>
+      <button (click)="save()" class="md success">Save</button>
+    </div>
+  </div>
+</div>

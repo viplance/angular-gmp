@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { CourseCardComponent } from './course-card.component';
 import { DurationPipe } from '../../pipes/duration.pipe';
 import { courses as Courses } from '../../fake-data';
@@ -9,7 +11,8 @@ describe('CourseCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseCardComponent, DurationPipe]
+      imports: [RouterTestingModule],
+      declarations: [CourseCardComponent, DurationPipe],
     }).compileComponents();
   }));
 
@@ -30,16 +33,8 @@ describe('CourseCardComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('is edit method exists', () => {
-    const spy = spyOn(component, 'editCourse');
-    component.editCourse();
-    expect(spy).toHaveBeenCalled();
-  });
-
   it('should render title', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      component.course.title.toUpperCase()
-    );
+    expect(compiled.querySelector('h1').textContent).toContain(component.course.title.toUpperCase());
   });
 });

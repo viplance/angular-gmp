@@ -1,27 +1,29 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
 import { ConfirmService } from '../../services';
-import { ConfirmButton } from '../../interfaces';
+import { ConfirmButton, ConfirmDialog } from '../../interfaces';
 
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss']
+  styleUrls: ['./confirm.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmComponent {
   buttons: ConfirmButton[];
+  header: string;
   message: string;
 
-  constructor(private confirmService: ConfirmService, private el: ElementRef) {
+  constructor(private el: ElementRef, private cdr: ChangeDetectorRef, private confirmService: ConfirmService) {
     this.confirmService.closeSubject.subscribe(() => {
       this.close();
     });
-    this.confirmService.confirmDataSubject.subscribe(
-      ({ message, buttons }: { message: string; buttons: ConfirmButton[] }) => {
-        this.show();
-        this.buttons = buttons;
-        this.message = message;
-      }
-    );
+    this.confirmService.confirmDataSubject.subscribe(({ header, message, buttons }: ConfirmDialog) => {
+      this.show();
+      this.buttons = buttons;
+      this.header = header || 'Confirm';
+      this.message = message;
+      this.cdr.detectChanges();
+    });
   }
 
   @HostListener('click', ['$event.target'])

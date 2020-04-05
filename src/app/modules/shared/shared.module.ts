@@ -5,13 +5,13 @@ import { RouterModule } from '@angular/router';
 
 // components
 import {
+  BreadcrumbsComponent,
   ConfirmComponent,
   FooterComponent,
   HeaderComponent,
   LogoComponent,
   SearchComponent,
-  TitleComponent,
-  UserLoginComponent
+  UserLoginComponent,
 } from './components';
 // pipes
 import { FilterPipe } from './pipes';
@@ -22,34 +22,34 @@ import { LabelDirective } from './directives';
   imports: [CommonModule, RouterModule],
   declarations: [
     // components
+    BreadcrumbsComponent,
     ConfirmComponent,
     FooterComponent,
     HeaderComponent,
     LogoComponent,
     SearchComponent,
-    TitleComponent,
     UserLoginComponent,
     // pipes
     FilterPipe,
     // directives
-    LabelDirective
+    LabelDirective,
   ],
   // providers: [ConfirmService],
   exports: [
     CommonModule,
     // components
+    BreadcrumbsComponent,
     ConfirmComponent,
     FooterComponent,
     FormsModule,
     HeaderComponent,
     LogoComponent,
     SearchComponent,
-    TitleComponent,
     UserLoginComponent,
     // pipes
     FilterPipe,
     // directives
-    LabelDirective
-  ]
+    LabelDirective,
+  ],
 })
 export class SharedModule {}

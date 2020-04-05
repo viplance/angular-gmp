@@ -4,18 +4,21 @@
 </section>
 
 <section class="add-course">
-  <button class="standard md">
-    <i class="fa fa-plus"></i>
-    <span>Add course</span>
-  </button>
+  <a routerLink="/courses/new">
+    <button class="standard md">
+      <i class="fa fa-plus"></i>
+      <span>Add course</span>
+    </button>
+  </a>
 </section>
 
 <section class="cards">
-  <app-course-card class="basic-card" *ngFor="let course of courses" [course]="course"
-    [class.top-rated]="course.topRated" (delete)="deleteCourse($event)" appStatusIcons appFreshCourse
-    (edit)="editCourse($event)"></app-course-card>
+  <app-course-card class="basic-card" *ngFor="let course of paginatedCourses" [course]="course"
+    [class.top-rated]="course.topRated" (delete)="deleteCourse($event)" appStatusIcons appFreshCourse></app-course-card>
 
-  <div *ngIf="courses.length > 5" (click)="loadMore()" class="basic-card button-card">LOAD MORE</div>
+  <div *ngIf="courses.length > counter" (click)="loadMore()" class="basic-card button-card">LOAD MORE</div>
 
-  <div *ngIf="courses.length === 0" class="basic-card button-card">NO DATA. FEEL FREE TO ADD NEW COURSE</div>
+  <div *ngIf="courses.length === 0" class="basic-card button-card">
+    <a routerLink="/courses/new">NO DATA. FEEL FREE TO ADD NEW COURSE</a>
+  </div>
 </section>

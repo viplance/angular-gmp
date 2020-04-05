@@ -1,0 +1,39 @@
+@import "app/styles/variables";
+
+:host {
+  display: grid;
+  background-color: $light;
+  align-items: center;
+  justify-content: center;
+  height: $lg-panel-height;
+}
+
+section {
+  min-width: $lg-panel-width;
+
+  span {
+    float: left;
+  }
+
+  span::after {
+    content: " / ";
+    white-space: pre;
+    color: $dark-sky-blue;
+    font-weight: 600;
+  }
+
+  span:last-child {
+    font-weight: 600;
+  }
+
+  span:last-child:after {
+    content: "";
+  }
+}
+
+@media (max-width: $lg-panel-width) {
+  section {
+    height: $sm-panel-height;
+    min-width: none;
+  }
+}

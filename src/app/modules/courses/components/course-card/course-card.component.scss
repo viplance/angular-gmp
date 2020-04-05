@@ -11,6 +11,14 @@ $card-left-block-width: 800px;
     background-color: #feffc4;
   }
 
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-weight: 600;
+  }
+
   .card-content {
     display: grid;
     grid-template-columns: $card-left-block-width auto;

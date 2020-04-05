@@ -37,10 +37,14 @@ input[type="button"] {
     height: calc(#{$basic-module} * 4);
   }
 
+  &.cancel {
+    background-color: $pale-grey;
+    color: $slate-grey;
+  }
+
   &.success {
     background-color: $sick-green;
     color: $light;
-    width: fit-content;
   }
 
   &.standard {
