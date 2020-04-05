@@ -1,9 +1,11 @@
 @import "variables.scss";
 
-input {
+input,
+textarea {
+  outline: none;
   position: relative;
   width: 100%;
-  height: calc(#{$basic-module} * 3);
+  min-height: calc(#{$basic-module} * 3);
   padding: calc(#{$basic-module} / 2) $basic-module;
   box-sizing: border-box;
   border: 1px solid $pale-grey;
@@ -34,4 +36,17 @@ input {
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+::placeholder {
+  color: $silver;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: $silver;
+}
+
+::-ms-input-placeholder {
+  color: $silver;
 }

@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.basic-card {
+  min-width: 731px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 2rem;
+}
+
+a {
+  margin-left: 0.5rem;
+}
+
+.line.buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+textarea {
+  height: 108px;
+  resize: none;
+}

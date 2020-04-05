@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <section class="content-container">
-  <app-title [title]="titleText | async"></app-title>
+  <app-breadcrumbs [breadcrumbs]="breadcrumbs | async"></app-breadcrumbs>
 
   <section class="content-wrapper">
     <router-outlet></router-outlet>
