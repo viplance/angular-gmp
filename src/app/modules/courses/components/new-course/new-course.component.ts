@@ -11,7 +11,7 @@ import { CourseModel } from 'app/modules/shared/models';
   styleUrls: ['./new-course.component.scss'],
 })
 export class NewCourseComponent {
-  course: Course = new CourseModel;
+  course: Course = new CourseModel();
 
   constructor(private coursesService: CoursesService, private router: Router) {}
 
@@ -21,6 +21,7 @@ export class NewCourseComponent {
   }
 
   setCreationDate($event): void {
+    console.log($event);
     this.course.creationDate = new Date($event);
   }
 }

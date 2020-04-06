@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { CoursesService } from '../../services';
 import { Course } from 'app/modules/shared/interfaces';
+import { CourseModel } from 'app/modules/shared/models';
 
 @Component({
   selector: 'app-edit-course',
@@ -12,7 +13,7 @@ import { Course } from 'app/modules/shared/interfaces';
   styleUrls: ['./edit-course.component.scss'],
 })
 export class EditCourseComponent implements OnDestroy, OnInit {
-  course: Course;
+  course: Course = new CourseModel();
   courseSubscription: Subscription;
 
   constructor(private coursesService: CoursesService, private activatedRoute: ActivatedRoute, private router: Router) {}
