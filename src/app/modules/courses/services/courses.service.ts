@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 // import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Course } from 'app/modules/shared/interfaces';
+import { Course, CourseDTO } from 'app/modules/shared/interfaces';
 import { courses as Courses } from '../fake-data';
 import { Observable } from 'rxjs';
 
@@ -19,51 +19,67 @@ export class CoursesService {
     return this.courses.length;
   }
 
-  getAll({ start, count }: { start: number; count: number }): Observable<Course[]> {
-    return this.http
-      .get(`${environment.apiUrl}/courses?`, { params: { start: start.toString(), count: count.toString() } })
-      .pipe(
-        map((res: []) => {
-          return this.courseDTO(res);
-        })
-      );
+  getAll({
+    start,
+    count,
+    textFragment,
+  }: {
+    start: number;
+    count: number;
+    textFragment?: string;
+  }): Observable<Course[]> {
+    let params: HttpParams;
+    if (textFragment) {
+      params = new HttpParams()
+        .set('start', start.toString())
+        .set('count', count.toString())
+        .set('textFragment', textFragment);
+    } else {
+      params = new HttpParams().set('start', start.toString()).set('count', count.toString());
+    }
+    return this.http.get(`${environment.apiUrl}/courses?`, { params }).pipe(
+      map((res: []) => {
+        return res.map((course: CourseDTO) => this.courseDTO(course));
+      })
+    );
   }
 
-  getById(id: number): Course {
-    return this.courses.find((course: Course) => course.id === id);
+  getById(id: number): Observable<Course> {
+    return this.http.get(`${environment.apiUrl}/courses/${id}`).pipe(map((res: CourseDTO) => this.courseDTO(res)));
   }
 
-  create(course: Course): Course {
-    const newCourse = {
-      id: this.newId,
-      ...course,
-    };
-    this.courses.push(newCourse);
-    return newCourse;
+  create(course: Course): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/courses`, this.course2serverModel(course));
   }
 
-  delete(id: number): void {
-    const index = this.courses.findIndex((course: Course) => course.id === id);
-    this.courses.splice(index, 1);
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/courses/${id}`);
   }
 
-  update(course: Course): Course {
-    const index = this.courses.findIndex((courseItem: Course) => courseItem.id === course.id);
-    this.courses[index] = course;
-    return course;
+  update(course: Course): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/courses/${course.id}`, this.course2serverModel(course));
   }
 
   /* DTO */
-  private courseDTO(res: any[]): Course[] {
-    return res.map((course: any) => {
-      return {
-        id: course.id,
-        title: course.name,
-        creationDate: new Date(course.date),
-        duration: course.length,
-        description: course.description,
-        topRated: course.isTopRated,
-      };
-    });
+  private courseDTO(course: CourseDTO): Course {
+    return {
+      id: course.id,
+      title: course.name,
+      creationDate: new Date(course.date),
+      duration: course.length,
+      description: course.description,
+      topRated: course.isTopRated,
+    };
+  }
+
+  private course2serverModel(course: Course): CourseDTO {
+    return {
+      id: course.id,
+      name: course.title,
+      date: course.creationDate.toString(),
+      length: course.duration,
+      description: course.description,
+      isTopRated: course.topRated,
+    };
   }
 }

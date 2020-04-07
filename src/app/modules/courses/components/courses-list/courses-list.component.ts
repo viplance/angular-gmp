@@ -26,10 +26,6 @@ export class CoursesListComponent implements OnInit {
     private coursesService: CoursesService
   ) {}
 
-  get paginatedCourses(): Course[] {
-    return this.courses.slice(0, this.counter);
-  }
-
   ngOnInit(): void {
     this.loadCourses();
   }
@@ -51,9 +47,12 @@ export class CoursesListComponent implements OnInit {
           title: 'Yes, delete',
           class: 'md success',
           action: (): void => {
-            this.coursesService.delete(id);
-            this.loadCourses();
-            this.confirmService.close();
+            this.coursesService.delete(id).subscribe(() => {
+              const index = this.courses.findIndex((sours: Course) => sours.id === id);
+              this.courses.splice(index, 1);
+              this.changeDetectorRef.detectChanges();
+              this.confirmService.close();
+            });
           },
         },
       ],
@@ -61,27 +60,24 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    this.counter += environment.coursesListLength;
     this.start += environment.coursesListLength;
     this.loadCourses();
   }
 
   loadCourses(): void {
-    this.coursesService.getAll({ start: this.start, count: this.counter }).subscribe((courses: Course[]) => {
-      if (courses.length < environment.coursesListLength) {
-        this.showLoadMore = false;
-      }
-      this.courses = [...this.courses, ...courses];
-      this.changeDetectorRef.detectChanges();
-    });
+    this.coursesService
+      .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
+      .subscribe((courses: Course[]) => {
+        this.showLoadMore = courses.length === environment.coursesListLength;
+        this.courses = [...this.courses, ...courses];
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
   search(): void {
-    this.courses = this.filter.transform(Courses, {
-      text: this.searchText,
-      field: 'title',
-    });
-    this.counter = environment.coursesListLength;
+    this.start = 0;
+    this.courses = [];
+    this.loadCourses();
   }
 
   setSearchText(text: string): void {

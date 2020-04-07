@@ -16,12 +16,12 @@ export class NewCourseComponent {
   constructor(private coursesService: CoursesService, private router: Router) {}
 
   add(): void {
-    this.coursesService.create(this.course);
-    this.router.navigate(['/courses']);
+    this.coursesService.create(this.course).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
 
-  setCreationDate($event): void {
-    console.log($event);
+  setCreationDate($event: string): void {
     this.course.creationDate = new Date($event);
   }
 }
