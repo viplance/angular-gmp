@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NewCourseComponent } from './new-course.component';
 import { courses as Courses } from '../../fake-data';
 
+import { CoursesService, CoursesServiceStub } from '../../services';
+
 describe('NewCourseComponent', () => {
   let component: NewCourseComponent;
   let fixture: ComponentFixture<NewCourseComponent>;
@@ -12,6 +14,12 @@ describe('NewCourseComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule],
       declarations: [NewCourseComponent],
+      providers: [
+        {
+          provide: CoursesService,
+          useClass: CoursesServiceStub,
+        },
+      ],
     }).compileComponents();
   }));
 

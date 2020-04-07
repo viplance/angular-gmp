@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { EditCourseComponent } from './edit-course.component';
 import { of } from 'rxjs';
 
+import { CoursesService, CoursesServiceStub } from '../../services';
+
 describe('EditCourseComponent', () => {
   let component: EditCourseComponent;
   let fixture: ComponentFixture<EditCourseComponent>;
@@ -23,6 +25,10 @@ describe('EditCourseComponent', () => {
               },
             }),
           },
+        },
+        {
+          provide: CoursesService,
+          useClass: CoursesServiceStub,
         },
       ],
     }).compileComponents();

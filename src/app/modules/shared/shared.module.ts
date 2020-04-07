@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // components
 import {
@@ -20,7 +21,7 @@ import { LabelDirective } from './directives';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
   declarations: [
     // components
     BreadcrumbsComponent,
@@ -38,12 +39,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   // providers: [ConfirmService],
   exports: [
+    // modules
     CommonModule,
+    FormsModule,
+    HttpClientModule,
     // components
     BreadcrumbsComponent,
     ConfirmComponent,
     FooterComponent,
-    FormsModule,
     HeaderComponent,
     LogoComponent,
     SearchComponent,
