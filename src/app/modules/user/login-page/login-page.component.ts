@@ -22,9 +22,11 @@ export class LoginPageComponent {
   login(): void {
     if (this.isFormValid) {
       this.errorMessage = null;
-      this.authService.login({ email: this.email, password: this.password });
-      this.authService.getUserInfo();
-      this.router.navigate(['/courses']);
+      this.authService.login({ email: this.email, password: this.password }).subscribe((res: any) => {
+        console.log(res);
+        this.authService.getUserInfo();
+        this.router.navigate(['/courses']);
+      });
     } else {
       this.errorMessage = 'Wrong e-mail or password';
     }

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
-// import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Course, CourseDTO } from 'app/modules/shared/interfaces';
 import { courses as Courses } from '../fake-data';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +36,7 @@ export class CoursesService {
     } else {
       params = new HttpParams().set('start', start.toString()).set('count', count.toString());
     }
-    return this.http.get(`${environment.apiUrl}/courses?`, { params }).pipe(
+    return this.http.get(`${environment.apiUrl}/courses`, { params }).pipe(
       map((res: []) => {
         return res.map((course: CourseDTO) => this.courseDTO(course));
       })
