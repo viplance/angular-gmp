@@ -14,8 +14,12 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
         () => {},
         (err: HttpErrorResponse) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 500) {
-              this.toastr.success('Http error', err.message);
+            switch (err.status) {
+              case 0:
+                this.toastr.error('Server is not available.', 'Connection error');
+                break;
+              default:
+                this.toastr.error(err.message, 'Http error');
             }
           }
         }
