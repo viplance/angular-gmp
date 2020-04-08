@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // third party modules
 import { ToastrModule } from 'ngx-toastr';
@@ -27,7 +26,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
 
 @NgModule({
-  imports: [BrowserAnimationsModule, CommonModule, FormsModule, HttpClientModule, RouterModule, ToastrModule.forRoot()],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule, ToastrModule.forRoot()],
   declarations: [
     // components
     BreadcrumbsComponent,
@@ -57,7 +56,6 @@ import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
   ],
   exports: [
     // modules
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
