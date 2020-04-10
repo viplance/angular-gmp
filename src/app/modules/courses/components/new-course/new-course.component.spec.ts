@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 import { NewCourseComponent } from './new-course.component';
+import { courses as Courses } from '../../fake-data';
+
+import { CoursesService, CoursesServiceStub } from '../../services';
 
 describe('NewCourseComponent', () => {
   let component: NewCourseComponent;
@@ -8,18 +12,25 @@ describe('NewCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewCourseComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, RouterTestingModule],
+      declarations: [NewCourseComponent],
+      providers: [
+        {
+          provide: CoursesService,
+          useClass: CoursesServiceStub,
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewCourseComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    component.course = Courses[0]; // set @Input() course value
+    expect(component).toBeDefined();
   });
 });

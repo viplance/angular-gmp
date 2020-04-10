@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { environment } from 'environments/environment';
@@ -13,19 +13,21 @@ import { ConfirmService } from 'app/modules/shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesListComponent implements OnInit {
+  start = 0;
   counter: number = environment.coursesListLength;
-  courses: Course[];
-  searchText: string;
+  courses: Course[] = [];
   filter = new FilterPipe();
+  searchText: string;
+  showLoadMore = true;
 
-  constructor(private confirmService: ConfirmService, private coursesService: CoursesService) {}
-
-  get paginatedCourses(): Course[] {
-    return this.courses.slice(0, this.counter);
-  }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private confirmService: ConfirmService,
+    private coursesService: CoursesService
+  ) {}
 
   ngOnInit(): void {
-    this.refreshList();
+    this.loadCourses();
   }
 
   deleteCourse(id: number): void {
@@ -45,9 +47,12 @@ export class CoursesListComponent implements OnInit {
           title: 'Yes, delete',
           class: 'md success',
           action: (): void => {
-            this.coursesService.delete(id);
-            this.refreshList();
-            this.confirmService.close();
+            this.coursesService.delete(id).subscribe(() => {
+              const index = this.courses.findIndex((sours: Course) => sours.id === id);
+              this.courses.splice(index, 1);
+              this.changeDetectorRef.detectChanges();
+              this.confirmService.close();
+            });
           },
         },
       ],
@@ -55,20 +60,24 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    this.counter += environment.coursesListLength;
-    this.refreshList();
+    this.start += environment.coursesListLength;
+    this.loadCourses();
   }
 
-  refreshList(): void {
-    this.courses = this.coursesService.getAll();
+  loadCourses(): void {
+    this.coursesService
+      .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
+      .subscribe((courses: Course[]) => {
+        this.showLoadMore = courses.length === environment.coursesListLength;
+        this.courses = [...this.courses, ...courses];
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
   search(): void {
-    this.courses = this.filter.transform(Courses, {
-      text: this.searchText,
-      field: 'title',
-    });
-    this.counter = environment.coursesListLength;
+    this.start = 0;
+    this.courses = [];
+    this.loadCourses();
   }
 
   setSearchText(text: string): void {

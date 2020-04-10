@@ -13,10 +13,10 @@
 </section>
 
 <section class="cards">
-  <app-course-card class="basic-card" *ngFor="let course of paginatedCourses" [course]="course"
+  <app-course-card class="basic-card" *ngFor="let course of courses" [course]="course"
     [class.top-rated]="course.topRated" (delete)="deleteCourse($event)" appStatusIcons appFreshCourse></app-course-card>
 
-  <div *ngIf="courses.length > counter" (click)="loadMore()" class="basic-card button-card">LOAD MORE</div>
+  <div *ngIf="showLoadMore" (click)="loadMore()" class="basic-card button-card">LOAD MORE</div>
 
   <div *ngIf="courses.length === 0" class="basic-card button-card">
     <a routerLink="/courses/new">NO DATA. FEEL FREE TO ADD NEW COURSE</a>

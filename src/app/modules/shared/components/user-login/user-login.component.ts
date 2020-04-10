@@ -10,11 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
   isAuthenticated: boolean;
-
-  get userName(): string {
-    const userInfo = this.authService.getUserInfo();
-    return userInfo ? `${userInfo.firstName} ${userInfo.lastName}` : '';
-  }
+  userName = '';
 
   constructor(
     private authService: AuthService,
@@ -26,6 +22,8 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     this.lS.updateLocal.subscribe(() => {
       this.isAuthenticated = this.authService.isAuthenticated();
+      const userInfo = this.authService.userInfo();
+      this.userName = userInfo ? `${userInfo.firstName} ${userInfo.lastName}` : '';
       this.cdr.detectChanges();
     });
   }

@@ -11,16 +11,17 @@ import { CourseModel } from 'app/modules/shared/models';
   styleUrls: ['./new-course.component.scss'],
 })
 export class NewCourseComponent {
-  course: Course = new CourseModel;
+  course: Course = new CourseModel();
 
   constructor(private coursesService: CoursesService, private router: Router) {}
 
   add(): void {
-    this.coursesService.create(this.course);
-    this.router.navigate(['/courses']);
+    this.coursesService.create(this.course).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
 
-  setCreationDate($event): void {
+  setCreationDate($event: string): void {
     this.course.creationDate = new Date($event);
   }
 }
