@@ -1,39 +1,21 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpEvent,
-  HttpErrorResponse,
-  HttpInterceptor,
-  HttpResponse,
-  HttpRequest,
-  HttpHandler,
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { LocalStorageService } from '../services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private lS: LocalStorageService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authReq = req.clone({
-      headers: req.headers.set('Session', '123456789'),
-    });
+    let authReq = req;
 
-    return next.handle(authReq).pipe(
-      tap(
-        (event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-            console.log('Server response');
-          }
-        },
-        (err: HttpErrorResponse) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              console.log('Unauthorized');
-            }
-          }
-        }
-      )
-    );
+    if (this.lS.getLocal()['token']) {
+      authReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${this.lS.getLocal()['token']}`),
+      });
+    }
+
+    return next.handle(authReq);
   }
 }
