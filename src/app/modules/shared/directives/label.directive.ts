@@ -24,8 +24,6 @@ export class LabelDirective implements OnInit {
       const label = this.renderer.createElement('span');
       this.renderer.addClass(label, 'input-label');
       const text = this.renderer.createText(this.appLabel);
-      const parent = this.elementRef.nativeElement.parentNode;
-      const refChild = this.elementRef.nativeElement;
       this.renderer.appendChild(label, text);
       this.renderer.appendChild(container, label);
     }

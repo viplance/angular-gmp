@@ -13,6 +13,7 @@ import {
   ConfirmComponent,
   FooterComponent,
   HeaderComponent,
+  LoaderComponent,
   LogoComponent,
   SearchComponent,
   UserLoginComponent,
@@ -23,7 +24,7 @@ import { FilterPipe } from './pipes';
 import { LabelDirective } from './directives';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 // interceptors
-import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
+import { AuthInterceptor, HttpRequestsInterceptor } from './interceptors';
 
 @NgModule({
   imports: [CommonModule, FormsModule, HttpClientModule, RouterModule, ToastrModule.forRoot()],
@@ -33,6 +34,7 @@ import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
     ConfirmComponent,
     FooterComponent,
     HeaderComponent,
+    LoaderComponent,
     LogoComponent,
     SearchComponent,
     UserLoginComponent,
@@ -45,7 +47,7 @@ import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorsInterceptor,
+      useClass: HttpRequestsInterceptor,
       multi: true,
     },
     {
@@ -65,6 +67,7 @@ import { AuthInterceptor, HttpErrorsInterceptor } from './interceptors';
     ConfirmComponent,
     FooterComponent,
     HeaderComponent,
+    LoaderComponent,
     LogoComponent,
     SearchComponent,
     UserLoginComponent,
