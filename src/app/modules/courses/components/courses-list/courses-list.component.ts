@@ -1,8 +1,9 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { environment } from 'environments/environment';
-import { courses as Courses } from '../../fake-data';
 import { CoursesService } from '../../services/courses.service';
 import { ConfirmService } from 'app/modules/shared/services';
 
@@ -12,13 +13,15 @@ import { ConfirmService } from 'app/modules/shared/services';
   styleUrls: ['./courses-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnInit, OnDestroy {
   start = 0;
   counter: number = environment.coursesListLength;
   courses: Course[] = [];
   filter = new FilterPipe();
   searchText: string;
   showLoadMore = true;
+  typeSearch = new Subject();
+  typeSearch$: Subscription;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -28,6 +31,20 @@ export class CoursesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCourses();
+
+    this.typeSearch$ = this.typeSearch
+      .pipe(
+        filter((text: string) => text === '' || text.length > 2),
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.search();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.typeSearch$.unsubscribe();
   }
 
   deleteCourse(id: number): void {
@@ -82,5 +99,6 @@ export class CoursesListComponent implements OnInit {
 
   setSearchText(text: string): void {
     this.searchText = text;
+    this.typeSearch.next(text);
   }
 }

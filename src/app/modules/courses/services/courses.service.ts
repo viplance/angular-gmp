@@ -14,10 +14,6 @@ export class CoursesService {
 
   constructor(private http: HttpClient) {}
 
-  private newId(): number {
-    return this.courses.length;
-  }
-
   getAll({
     start,
     count,
@@ -36,6 +32,7 @@ export class CoursesService {
     } else {
       params = new HttpParams().set('start', start.toString()).set('count', count.toString());
     }
+
     return this.http.get(`${environment.apiUrl}/courses`, { params }).pipe(
       map((res: []) => {
         return res.map((course: CourseDTO) => this.courseDTO(course));
