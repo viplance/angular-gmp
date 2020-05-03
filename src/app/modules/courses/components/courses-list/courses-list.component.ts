@@ -1,11 +1,14 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { environment } from 'environments/environment';
 import { CoursesService } from '../../services/courses.service';
 import { ConfirmService } from 'app/modules/shared/services';
+import { CoursesActions } from '../../store/actions';
+import { getCourses } from '../../store/reducers';
 
 @Component({
   selector: 'app-courses',
@@ -17,6 +20,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   start = 0;
   counter: number = environment.coursesListLength;
   courses: Course[] = [];
+  courses$: Observable<Course[]>;
   filter = new FilterPipe();
   searchText: string;
   showLoadMore = true;
@@ -26,8 +30,32 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmService: ConfirmService,
-    private coursesService: CoursesService
-  ) {}
+    private coursesService: CoursesService,
+    private store: Store
+  ) {
+    this.courses$ = store.select(getCourses);
+    this.store.dispatch({
+      type: CoursesActions.LOAD_COURSES,
+      payload: [
+        {
+          id: 1,
+          title: 'Title 1',
+          creationDate: new Date(),
+          duration: 111,
+          description: 'Description 1',
+          topRated: true,
+        },
+        {
+          id: 2,
+          title: 'Title 2',
+          creationDate: new Date(),
+          duration: 222,
+          description: 'Description 2',
+          topRated: false,
+        },
+      ],
+    });
+  }
 
   ngOnInit(): void {
     this.loadCourses();
