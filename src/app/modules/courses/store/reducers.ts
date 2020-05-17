@@ -27,5 +27,3 @@ const coursesReducer = (state: Course[] = initialState, action: actions.LoadCour
 export const combinedCoursesReducer: ActionReducer<object> = combineReducers({
   courses: coursesReducer,
 });
-
-export const getCourses = (state: State): Course[] => state[featureName].courses;
