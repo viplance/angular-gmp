@@ -45,7 +45,7 @@ export class LocalStorageService {
     return lS;
   }
 
-  // Does information exsits in local storage?
+  // Does information exists in local storage?
   hasLocal(param: string = null): boolean {
     if (param) {
       return this.getLocal()[param];

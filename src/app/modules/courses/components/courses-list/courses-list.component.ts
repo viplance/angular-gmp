@@ -34,27 +34,6 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     private store: Store
   ) {
     this.courses$ = store.select(getCourses);
-    this.store.dispatch({
-      type: CoursesActions.LOAD_COURSES,
-      payload: [
-        {
-          id: 1,
-          title: 'Title 1',
-          creationDate: new Date(),
-          duration: 111,
-          description: 'Description 1',
-          topRated: true,
-        },
-        {
-          id: 2,
-          title: 'Title 2',
-          creationDate: new Date(),
-          duration: 222,
-          description: 'Description 2',
-          topRated: false,
-        },
-      ],
-    });
   }
 
   ngOnInit(): void {
@@ -110,13 +89,17 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   loadCourses(): void {
-    this.coursesService
-      .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
-      .subscribe((courses: Course[]) => {
-        this.showLoadMore = courses.length === environment.coursesListLength;
-        this.courses = [...this.courses, ...courses];
-        this.changeDetectorRef.detectChanges();
-      });
+    this.store.dispatch({
+      type: CoursesActions.LOAD_COURSES,
+      payload: { start: this.start, count: this.counter, textFragment: this.searchText },
+    });
+    // this.coursesService
+    //   .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
+    //   .subscribe((courses: Course[]) => {
+    //     this.showLoadMore = courses.length === environment.coursesListLength;
+    //     this.courses = [...this.courses, ...courses];
+    //     this.changeDetectorRef.detectChanges();
+    //   });
   }
 
   search(): void {

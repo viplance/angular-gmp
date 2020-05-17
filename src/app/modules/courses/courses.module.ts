@@ -8,7 +8,7 @@ import { FreshCourseDirective, StatusIconsDirective } from './directives';
 import { DurationPipe } from './pipes/duration.pipe';
 
 import { StoreModule } from '@ngrx/store';
-import { combinedCoursesReducer } from './store';
+import { combinedCoursesReducer, featureName } from './store';
 
 const routes: Routes = [
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('CoursesModule', combinedCoursesReducer),
+    StoreModule.forFeature(featureName, combinedCoursesReducer),
     SharedModule,
     RouterModule.forChild(routes),
   ],

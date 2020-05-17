@@ -12,9 +12,9 @@ export interface State {
 
 const initialState = [];
 
-const coursesReducer = (state: Course[] = initialState, action: actions.LoadCoursesAction): Course[] => {
+const coursesReducer = (state: Course[] = initialState, action: actions.LoadCoursesSuccessAction): Course[] => {
   switch (action.type) {
-    case actions.CoursesActions.LOAD_COURSES: {
+    case actions.CoursesActions.LOAD_COURSES_SUCCESS: {
       return [...action.payload];
     }
 
