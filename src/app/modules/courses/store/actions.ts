@@ -42,13 +42,6 @@ export class UpdateCourseSuccessAction implements Action {
 }
 
 // tslint:disable-next-line: max-classes-per-file
-export class UpdateCourseFailAction implements Action {
-  readonly type = CoursesActions.UPDATE_COURSE_FAIL;
-
-  constructor(public payload: Course) {}
-}
-
-// tslint:disable-next-line: max-classes-per-file
 export class CreateCourseAction implements ActionWithPayload {
   readonly type = CoursesActions.CREATE_COURSE;
 
@@ -58,13 +51,6 @@ export class CreateCourseAction implements ActionWithPayload {
 // tslint:disable-next-line: max-classes-per-file
 export class CreateCourseSuccessAction implements Action {
   readonly type = CoursesActions.CREATE_COURSE_SUCCESS;
-
-  constructor(public payload: Course) {}
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class CreateCourseFailAction implements Action {
-  readonly type = CoursesActions.CREATE_COURSE_FAIL;
 
   constructor(public payload: Course) {}
 }
