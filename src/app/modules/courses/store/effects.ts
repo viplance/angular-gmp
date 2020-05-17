@@ -19,4 +19,26 @@ export class CoursesEffects {
         .pipe(map((courses: Course[]) => ({ type: CoursesActions.LOAD_COURSES_SUCCESS, payload: courses })));
     })
   );
+
+  @Effect()
+  createCourse$ = this.actions$.pipe(
+    ofType(CoursesActions.CREATE_COURSE),
+    switchMap((action: ActionWithPayload) => {
+      const course: Course = action.payload;
+      return this.coursesService
+        .create(course)
+        .pipe(map((updatedCourse: Course) => ({ type: CoursesActions.CREATE_COURSE_SUCCESS, payload: updatedCourse })));
+    })
+  );
+
+  @Effect()
+  updateCourse$ = this.actions$.pipe(
+    ofType(CoursesActions.UPDATE_COURSE),
+    switchMap((action: ActionWithPayload) => {
+      const course: Course = action.payload;
+      return this.coursesService
+        .update(course)
+        .pipe(map((updatedCourse: Course) => ({ type: CoursesActions.UPDATE_COURSE_SUCCESS, payload: updatedCourse })));
+    })
+  );
 }
