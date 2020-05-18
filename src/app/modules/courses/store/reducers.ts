@@ -2,14 +2,6 @@ import { ActionReducer, combineReducers } from '@ngrx/store';
 import { Course } from 'app/modules/shared/interfaces';
 import * as actions from './actions';
 
-export const featureName = 'CoursesModule';
-
-export interface State {
-  [featureName]: {
-    courses: Course[];
-  };
-}
-
 const initialState = [];
 
 const coursesReducer = (state: Course[] = initialState, action: actions.LoadCoursesSuccessAction): Course[] => {
@@ -23,6 +15,8 @@ const coursesReducer = (state: Course[] = initialState, action: actions.LoadCour
     }
   }
 };
+
+export const coursesModuleFeatureName = 'CoursesModule';
 
 export const combinedCoursesReducer: ActionReducer<object> = combineReducers({
   courses: coursesReducer,

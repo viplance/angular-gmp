@@ -6,16 +6,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedModule } from './modules/shared/shared.module';
 import { AppComponent } from './app.component';
-import { combinedCoursesReducer, CoursesEffects } from 'app/modules/courses/store';
+import { combinedCoursesReducer, CoursesEffects, coursesModuleFeatureName } from 'app/modules/courses/store';
+import { combinedSharedModuleReducer, SharedModuleEffects, sharedModuleFeatureName } from 'app/modules/shared/store';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([CoursesEffects]),
+    EffectsModule.forRoot([CoursesEffects, SharedModuleEffects]),
     SharedModule,
-    StoreModule.forRoot(combinedCoursesReducer),
+    StoreModule.forRoot({
+      [coursesModuleFeatureName]: combinedCoursesReducer,
+      [sharedModuleFeatureName]: combinedSharedModuleReducer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: false,

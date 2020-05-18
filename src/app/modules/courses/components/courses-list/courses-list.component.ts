@@ -100,13 +100,6 @@ export class CoursesListComponent implements OnInit, OnDestroy {
       type: CoursesActions.LOAD_COURSES,
       payload: { start: this.start, count: this.counter, textFragment: this.searchText },
     });
-    // this.coursesService
-    //   .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
-    //   .subscribe((courses: Course[]) => {
-    //     this.showLoadMore = courses.length === environment.coursesListLength;
-    //     this.courses = [...this.courses, ...courses];
-    //     this.changeDetectorRef.detectChanges();
-    //   });
   }
 
   search(): void {

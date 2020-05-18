@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { LoginPageComponent } from './login-page.component';
 import { AuthService, AuthServiceStub } from 'app/modules/shared/services';
@@ -11,7 +12,7 @@ describe('LoginPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule],
+      imports: [FormsModule, RouterTestingModule, StoreModule.forRoot({})],
       declarations: [LoginPageComponent],
       providers: [{ provide: AuthService, useClass: AuthServiceStub }],
     }).compileComponents();

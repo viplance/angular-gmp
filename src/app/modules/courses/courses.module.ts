@@ -7,9 +7,6 @@ import { CourseCardComponent, CoursesListComponent, EditCourseComponent, NewCour
 import { FreshCourseDirective, StatusIconsDirective } from './directives';
 import { DurationPipe } from './pipes/duration.pipe';
 
-import { StoreModule } from '@ngrx/store';
-import { combinedCoursesReducer, featureName } from './store';
-
 const routes: Routes = [
   {
     path: '',
@@ -29,12 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    StoreModule.forFeature(featureName, combinedCoursesReducer),
-    SharedModule,
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   declarations: [
     CoursesListComponent,
     CourseCardComponent,

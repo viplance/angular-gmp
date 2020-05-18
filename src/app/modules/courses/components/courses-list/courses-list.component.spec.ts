@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { CoursesListComponent } from './courses-list.component';
-import { provideMockStore } from '@ngrx/store/testing';
-import { featureName } from '../../store';
+import { coursesModuleFeatureName } from '../../store';
 import { CoursesService, CoursesServiceStub } from '../../services';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
-  const initialState = { [featureName]: { courses: [] } };
+  const initialState = { [coursesModuleFeatureName]: { courses: [] } };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
