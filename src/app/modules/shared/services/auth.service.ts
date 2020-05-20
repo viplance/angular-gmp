@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -29,16 +29,18 @@ export class AuthService {
     );
   }
 
-  getUserInfo(token: string): Observable<void> {
+  getUserInfo(token: string): Observable<User> {
     return this.http.post(`${environment.apiUrl}/auth/userinfo`, { token }).pipe(
-      tap((user: any) => {
+      map((res: any) => {
+        const user: User = {
+          id: res.id,
+          firstName: res.name.first,
+          lastName: res.name.last,
+        };
         this.lS.setLocal({
-          user: {
-            id: user.id,
-            firstName: user.name.first,
-            lastName: user.name.last,
-          },
+          user,
         });
+        return user;
       })
     );
   }

@@ -1,19 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { FormsModule } from '@angular/forms';
 import { EditCourseComponent } from './edit-course.component';
-import { of } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { of, ReplaySubject } from 'rxjs';
+import { StoreModule } from '@ngrx/store';
 
 import { CoursesService, CoursesServiceStub } from '../../services';
 
 describe('EditCourseComponent', () => {
   let component: EditCourseComponent;
   let fixture: ComponentFixture<EditCourseComponent>;
+  const actions = new ReplaySubject(1);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule],
+      imports: [FormsModule, RouterTestingModule, StoreModule.forRoot({})],
       declarations: [EditCourseComponent],
       providers: [
         {
@@ -30,6 +33,7 @@ describe('EditCourseComponent', () => {
           provide: CoursesService,
           useClass: CoursesServiceStub,
         },
+        provideMockActions(() => actions),
       ],
     }).compileComponents();
   }));

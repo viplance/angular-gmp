@@ -72,7 +72,7 @@ export class CoursesService {
     return {
       id: course.id,
       name: course.title,
-      date: course.creationDate.toString(),
+      date: (course.creationDate || new Date()).toString(),
       length: course.duration,
       description: course.description,
       isTopRated: course.topRated,

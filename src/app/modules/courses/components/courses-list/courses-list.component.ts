@@ -1,11 +1,13 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FilterPipe } from 'app/modules/shared/pipes';
 import { Course } from 'app/modules/shared/interfaces';
 import { environment } from 'environments/environment';
 import { CoursesService } from '../../services/courses.service';
 import { ConfirmService } from 'app/modules/shared/services';
+import { CoursesActions, getCourses } from '../../store';
 
 @Component({
   selector: 'app-courses',
@@ -17,22 +19,33 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   start = 0;
   counter: number = environment.coursesListLength;
   courses: Course[] = [];
+  coursesSubscription: Subscription;
+  courses$: Observable<Course[]>;
   filter = new FilterPipe();
   searchText: string;
   showLoadMore = true;
   typeSearch = new Subject();
-  typeSearch$: Subscription;
+  typeSearchSubscription: Subscription;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmService: ConfirmService,
-    private coursesService: CoursesService
-  ) {}
+    private coursesService: CoursesService,
+    private store: Store
+  ) {
+    this.courses$ = store.select(getCourses);
+  }
 
   ngOnInit(): void {
+    this.coursesSubscription = this.courses$.subscribe((courses: Course[]) => {
+      this.showLoadMore = courses.length === environment.coursesListLength;
+      this.courses = courses;
+      this.changeDetectorRef.detectChanges();
+    });
+
     this.loadCourses();
 
-    this.typeSearch$ = this.typeSearch
+    this.typeSearchSubscription = this.typeSearch
       .pipe(
         filter((text: string) => text === '' || text.length > 2),
         debounceTime(1000),
@@ -44,7 +57,8 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.typeSearch$.unsubscribe();
+    this.coursesSubscription.unsubscribe();
+    this.typeSearchSubscription.unsubscribe();
   }
 
   deleteCourse(id: number): void {
@@ -82,13 +96,10 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   loadCourses(): void {
-    this.coursesService
-      .getAll({ start: this.start, count: this.counter, textFragment: this.searchText })
-      .subscribe((courses: Course[]) => {
-        this.showLoadMore = courses.length === environment.coursesListLength;
-        this.courses = [...this.courses, ...courses];
-        this.changeDetectorRef.detectChanges();
-      });
+    this.store.dispatch({
+      type: CoursesActions.LOAD_COURSES,
+      payload: { start: this.start, count: this.counter, textFragment: this.searchText },
+    });
   }
 
   search(): void {
