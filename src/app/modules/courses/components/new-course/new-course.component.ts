@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { Course } from 'app/modules/shared/interfaces';
 import { CourseModel } from 'app/modules/shared/models';
@@ -17,8 +18,16 @@ import { CoursesActions } from '../../store';
 export class NewCourseComponent implements OnDestroy {
   destroyed$ = new Subject<boolean>();
   course: Course = new CourseModel();
+  showErrors: boolean;
 
-  constructor(private actions$: Actions, private router: Router, private store: Store) {
+  courseForm = this.fb.group({
+    title: ['', [Validators.required, Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.maxLength(500)]],
+    duration: ['', Validators.required],
+    creationDate: ['', Validators.required],
+  });
+
+  constructor(private actions$: Actions, private fb: FormBuilder, private router: Router, private store: Store) {
     this.actions$
       .pipe(
         ofType(CoursesActions.CREATE_COURSE_SUCCESS),
@@ -34,10 +43,14 @@ export class NewCourseComponent implements OnDestroy {
   }
 
   add(): void {
-    this.store.dispatch({
-      type: CoursesActions.CREATE_COURSE,
-      payload: this.course,
-    });
+    if (this.courseForm.valid) {
+      this.store.dispatch({
+        type: CoursesActions.CREATE_COURSE,
+        payload: this.courseForm.value,
+      });
+    } else {
+      this.showErrors = true;
+    }
   }
 
   setCreationDate($event: string): void {

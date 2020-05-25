@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -27,7 +27,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthInterceptor, HttpRequestsInterceptor } from './interceptors';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule, ToastrModule.forRoot()],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, ToastrModule.forRoot()],
   declarations: [
     // components
     BreadcrumbsComponent,
@@ -60,6 +60,7 @@ import { AuthInterceptor, HttpRequestsInterceptor } from './interceptors';
     // modules
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ToastrModule,
     // components

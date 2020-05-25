@@ -10,6 +10,10 @@ textarea {
   box-sizing: border-box;
   border: 1px solid $pale-grey;
   border-radius: $small-radius;
+
+  &.invalid {
+    border: 1px solid $orange-red;
+  }
 }
 
 .input-container {
