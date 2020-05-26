@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -12,28 +13,36 @@ import { SharedModuleActions, getUser } from 'app/modules/shared/store';
   styleUrls: ['./login-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnDestroy {
   errorMessage: string;
   email: string;
   password: string;
+  showErrors: boolean;
   userSubscription: Subscription;
   user$: Observable<User>;
 
-  constructor(private authService: AuthService, private router: Router, private store: Store) {
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.minLength(3)]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
+  });
+
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private store: Store) {
     this.user$ = store.select(getUser);
     this.userSubscription = this.user$.subscribe(() => {
       this.router.navigate(['/courses']);
     });
   }
 
-  get isFormValid(): boolean {
-    return this.email && this.email.length > 3 && this.password && this.password.length > 5;
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 
   login(): void {
-    if (this.isFormValid) {
+    if (this.loginForm.valid) {
       this.errorMessage = null;
-      this.authService.login({ email: this.email, password: this.password }).subscribe((token: string) => {
+      const email = this.loginForm.controls.email.value;
+      const password = this.loginForm.controls.password.value;
+      this.authService.login({ email, password }).subscribe((token: string) => {
         this.store.dispatch({
           type: SharedModuleActions.GET_USER_INFO,
           payload: token,
