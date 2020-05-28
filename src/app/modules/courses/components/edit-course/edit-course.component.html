@@ -1,20 +1,46 @@
-<div class="basic-card">
+<div class="basic-card" [formGroup]="courseForm">
   <div class="line">
     <h1>Edit course</h1>
   </div>
   <div class="line">
-    <input [(ngModel)]="course.title" autofocus appLabel="Title:" required placeholder="Text input">
+    <input
+      [class.invalid]="showErrors && courseForm.controls.title.invalid"
+      formControlName="title"
+      autofocus
+      appLabel="Title:"
+      required
+      placeholder="Text input"
+    />
   </div>
   <div class="line">
-    <textarea [(ngModel)]="course.description" appLabel="Description:" required
-      placeholder="Add description"></textarea>
+    <textarea
+      [class.invalid]="showErrors && courseForm.controls.description.invalid"
+      formControlName="description"
+      appLabel="Description:"
+      required
+      placeholder="Add description"
+    ></textarea>
   </div>
   <div class="line">
-    <input [(ngModel)]="course.duration" appLabel="Duration:" required placeholder="minutes" type="number">
+    <input
+      [class.invalid]="showErrors && courseForm.controls.duration.invalid"
+      formControlName="duration"
+      appLabel="Duration:"
+      required
+      placeholder="minutes"
+      type="number"
+    />
   </div>
   <div class="line">
-    <input [ngModel]="course.creationDate | date:'yyyy-MM-dd'" (ngModelChange)="setCreationDate($event)" appLabel="Date:" required placeholder="mm-dd-yyyy"
-      type="date">
+    <input
+      [class.invalid]="showErrors && courseForm.controls.creationDate.invalid"
+      formControlName="creationDate"
+      (ngModelChange)="setCreationDate($event)"
+      appLabel="Date:"
+      required
+      placeholder="mm-dd-yyyy"
+      type="date"
+    />
   </div>
   <div class="line buttons-container">
     <div class="buttons">

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of, ReplaySubject } from 'rxjs';
 import { StoreModule } from '@ngrx/store';
 
@@ -16,7 +16,7 @@ describe('EditCourseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule, StoreModule.forRoot({})],
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule, StoreModule.forRoot({})],
       declarations: [EditCourseComponent],
       providers: [
         {

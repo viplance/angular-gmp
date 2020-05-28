@@ -4,10 +4,10 @@ import { Subject, Subscription } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { CoursesService } from '../../services';
 import { Course } from 'app/modules/shared/interfaces';
-import { CourseModel } from 'app/modules/shared/models';
 import { CoursesActions } from '../../store';
 
 @Component({
@@ -17,11 +17,20 @@ import { CoursesActions } from '../../store';
 })
 export class EditCourseComponent implements OnDestroy, OnInit {
   destroyed$ = new Subject<boolean>();
-  course: Course = new CourseModel();
+  id: number;
   courseSubscription: Subscription;
+  showErrors: boolean;
+
+  courseForm = this.fb.group({
+    title: ['', [Validators.required, Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.maxLength(500)]],
+    duration: ['', Validators.required],
+    creationDate: ['', Validators.required],
+  });
 
   constructor(
     private actions$: Actions,
+    private fb: FormBuilder,
     private coursesService: CoursesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -38,9 +47,11 @@ export class EditCourseComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.courseSubscription = this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
-      this.coursesService.getById(parseInt(id, 10)).subscribe((course: Course) => {
-        this.course = course;
+      const id = parseInt(params.get('id'), 10);
+      this.id = id;
+      this.coursesService.getById(id).subscribe((course: Course) => {
+        console.log(course);
+        this.courseForm.patchValue(course);
       });
     });
   }
@@ -50,13 +61,20 @@ export class EditCourseComponent implements OnDestroy, OnInit {
   }
 
   save(): void {
-    this.store.dispatch({
-      type: CoursesActions.UPDATE_COURSE,
-      payload: this.course,
-    });
+    if (this.courseForm.valid) {
+      this.store.dispatch({
+        type: CoursesActions.UPDATE_COURSE,
+        payload: {
+          ...this.courseForm.value,
+          id: this.id,
+        },
+      });
+    } else {
+      this.showErrors = true;
+    }
   }
 
   setCreationDate($event: string): void {
-    this.course.creationDate = new Date($event);
+    // this.course.creationDate = new Date($event);
   }
 }
